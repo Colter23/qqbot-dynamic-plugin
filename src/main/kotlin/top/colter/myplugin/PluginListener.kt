@@ -28,7 +28,7 @@ object GroupListener : ListenerHost {
         if (msg.contains("[mirai:at:${bot.id}")){
             var ll = listOf<String>("( •̀ ω •́ )✧","φ(゜▽゜*)♪","(oﾟvﾟ)ノ","(¬‿¬)","(o゜▽゜)o☆",
                     "(っ °Д °;)っ","ヽ(*。>Д<)o゜","￣へ￣","(￣▽￣)\"")
-            reply(ll[(0..ll.size).random()])
+            reply(ll[(ll.indices).random()])
         }
 
         // 开启/关闭群的动态转发

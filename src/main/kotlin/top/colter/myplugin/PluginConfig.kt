@@ -7,7 +7,7 @@ import net.mamoe.mirai.console.data.value
 // 配置是插件与用户交互的接口, 但不能用来保存插件的数据.
 object PluginConfig : AutoSavePluginConfig() {
 
-    // 管理群 私聊bot,报错都会发到此群
+    // 管理群 私聊bot,报错都会发送此群
     var adminGroup : Long = 11111111111
 
 }
