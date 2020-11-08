@@ -91,23 +91,36 @@ suspend fun getMsg(msg:String, unixTimestamp:Long, name:String, followNum:Int,dy
         var tempText = msgText.substring(0, msgIndex)
         var count = 0
         var tin = false
+        var ei = 0
+        var el = 0
         var i = 0
         //限制每行29个字符
-        for (i in tempText.indices){
-            if (tempText[i%29] == '['){
+        while(true){
+
+            if (tempText[i] == '['){
+                ei = i
                 tin = true
             }
-            if (tempText[i%29] == ']'){
+            if (tempText[i] == ']'){
+                el += i - ei + 1
                 tin = false
             }
             if (!tin){
                 count++
             }
             if (count==29){
-                stringList.add(tempText.substring(0,29))
-                tempText = tempText.substring(29)
+                stringList.add(tempText.substring(0,29+el))
+                tempText = tempText.substring(29+el)
+                el = 0
+                count = 0
+                i = 0
             }
+            if (tempText.length<29){
+                break
+            }
+            i++
         }
+
         stringList.add(tempText)
         msgText = msgText.substring(msgIndex+1)
     }
@@ -137,9 +150,12 @@ suspend fun getMsg(msg:String, unixTimestamp:Long, name:String, followNum:Int,dy
             val tempSimp = text.substring(start, end)
             text = text.substring(end)
 
-            centerG2.drawString(tempText, x, 50)
-            x += countLength(tempText)
+            if (start != 0){
+                centerG2.drawString(tempText, x, 50)
 
+                //计算字符串像素长度 用于绘制表情
+                x += centerG2.font.getStringBounds(tempText, centerG2.fontRenderContext).width.toInt()
+            }
             try{
                 val emoji = emojiList?.get(tempSimp)
                 val reEmoji = emoji?.getScaledInstance(65,65, java.awt.Image.SCALE_DEFAULT)
@@ -182,7 +198,12 @@ suspend fun getMsg(msg:String, unixTimestamp:Long, name:String, followNum:Int,dy
     biList.add(bottomBi)
     bottomG2.font = Font("微软雅黑", Font.BOLD, 45)
     bottomG2.color = Color(217, 217, 217)
-    bottomG2.drawString("动态ID:$dynamicId",80,39)
+    if (dynamicId.length<10){
+        bottomG2.drawString("直播ID:$dynamicId",80,39)
+    }else{
+        bottomG2.drawString("动态ID:$dynamicId",80,39)
+    }
+
 
     //构建最终图片
     var endBi = BufferedImage(1920, height, BufferedImage.TYPE_INT_RGB)
@@ -197,26 +218,4 @@ suspend fun getMsg(msg:String, unixTimestamp:Long, name:String, followNum:Int,dy
     //ImageIO.write(endBi, "JPEG", FileOutputStream("$runPath/bg/history/$dynamicId.jpg"))
 
     return endBi
-}
-
-//计算字符串像素长度 用于绘制表情
-private fun countLength(str : String):Int{
-    var length = 0
-    for (i in str.indices) {
-        var ch: Char = str[i]
-        if (ch in 'A'..'Z'){
-            length+=40
-        }else if (ch in 'a'..'z'){
-            length+=33
-        }else if (ch in '0'..'9'){
-            length+=35
-        }else if (ch in "!.,'·\""){
-            length+=17
-        }else if (ch in "+-*/^#$?"){
-            length+=34
-        }else {
-            length+=59
-        }
-    }
-    return length
 }

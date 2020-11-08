@@ -20,10 +20,13 @@ suspend fun forward (){
     delay(5000)
 
     //获取登陆bot
-    val bot = Bot.getInstance(1111111111)
+    val bot = Bot.getInstance(PluginConfig.loginQQId)
 
     var followNum : Int = 0
     var liveStatus : Int = 0
+    var roomInfo : JSONObject
+    var roomCover : String = ""
+    var liveStartTime : Long = 0
 
     var res : JSONObject
     var desc : JSONObject
@@ -122,12 +125,40 @@ suspend fun forward (){
                     member["dynamicId"] = dynamicId
 
                 }
+
+
+                delay(2000)
+                roomInfo = httpGET(PluginData.liveStatusApi+member["liveRoom"] ).getJSONObject("data").getJSONObject("room_info")
+                liveStatus = roomInfo.getInteger("live_status")
+                if (liveStatus == 1 && !member["live"].toBoolean()){
+                    pictures.clear()
+                    emojiList.clear()
+                    if (followNum==0){
+                        delay(2000)
+                        followNum = httpGET(PluginData.followNumApi + member["uid"]).getJSONObject("data").getInteger("follower").toInt()
+                    }
+
+                    liveStartTime = roomInfo.getBigInteger("live_start_time").toLong()
+                    pictures.add(roomInfo.getString("cover"))
+
+                    // 构建回复消息
+                    content = "直播: ${roomInfo.getString("title")}"
+                    resImg = getMsg(content,liveStartTime,"${member["name"]}",followNum,"${member["liveRoom"]}",emojiList,pictures)
+                    var resMsg  = MessageChainBuilder(1)
+                    resMsg.add(bot.getGroup(PluginConfig.adminGroup).uploadImage(resImg))
+                    resMsg.add("https://live.bilibili.com/${member["liveRoom"]}")
+                    sendGroups(bot,resMsg.asMessageChain())
+
+                    member["live"] = true.toString()
+                }
+
+
             }catch (e:Exception){
                 logger.error(e.message)
                 bot.getGroup(PluginConfig.adminGroup).sendMessage("ERROR: 请求数据失败！！！")
             }
 
-
+            followNum = 0
             pictures.clear()
             emojiList.clear()
 

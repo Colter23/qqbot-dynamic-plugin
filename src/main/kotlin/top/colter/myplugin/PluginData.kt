@@ -12,6 +12,8 @@ object PluginData : AutoSavePluginData() {
     val dynamicApi by value("https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history?visitor_uid=$visitor_uid&offset_dynamic_id=0&need_top=0&host_uid=")
     // 获取b站粉丝数API
     val followNumApi by value("https://api.bilibili.com/x/relation/stat?vmid=")
+    // 获取直播状态API
+    val liveStatusApi by value("https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByRoom?room_id=")
 
     // 运行路径 在初始化时赋值
     var runPath by value("./")
@@ -28,18 +30,21 @@ object PluginData : AutoSavePluginData() {
             Pair<String,String>("uid","487550002"),
             Pair<String,String>("name","bell"),
             Pair<String,String>("live","false"),
+            Pair<String,String>("liveRoom","21811136"),
             Pair<String,String>("dynamicId","454388105190912992")
         ),
         mutableMapOf<String,String>(
             Pair<String,String>("uid","487551829"),
             Pair<String,String>("name","memory"),
             Pair<String,String>("live","false"),
+            Pair<String,String>("liveRoom","21955596"),
             Pair<String,String>("dynamicId","454332438125895159")
         ),
         mutableMapOf<String,String>(
             Pair<String,String>("uid","421347849"),
             Pair<String,String>("name","lily"),
             Pair<String,String>("live","false"),
+            Pair<String,String>("liveRoom","21415012"),
             Pair<String,String>("dynamicId","454405156217475634")
         )
     ))

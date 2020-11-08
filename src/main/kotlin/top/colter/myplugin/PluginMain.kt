@@ -10,11 +10,7 @@ import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.registerEvents
 
-/**
- * 插件配置项：
- *          PluginConfig下的adminGroup
- *          ForwardDynamic下的获取登陆bot的qq号
- */
+
 @AutoService(JvmPlugin::class)
 object PluginMain : KotlinPlugin(
     JvmPluginDescription(
