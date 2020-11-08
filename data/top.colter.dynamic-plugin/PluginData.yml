@@ -1,0 +1,11 @@
+dynamicApi: 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/space_history?visitor_uid=32868931&offset_dynamic_id=0&need_top=0&host_uid='
+followNumApi: 'https://api.bilibili.com/x/relation/stat?vmid='
+runPath: 'D:\Desktop\项目\qqbot\qqbot-plugin'
+dynamicCount: 0
+groupList: 
+  - 1030460255
+followList: 
+  - uid: 524484462
+    name: bell
+    live: false
+    dynamicId: 454901628660984670

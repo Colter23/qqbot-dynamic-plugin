@@ -1,0 +1,19 @@
+dynamicApi: 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_personal?host_uid='
+followNumApi: 'https://api.bilibili.com/x/relation/stat?vmid='
+runPath: ./
+dynamicCount: 0
+groupList: 
+  - 1030460255
+followList: 
+  - uid: 487550002
+    name: bell
+    live: false
+    dynamicId: 454388105190912992
+  - uid: 487551829
+    name: memory
+    live: false
+    dynamicId: 454332438125895159
+  - uid: 421347849
+    name: lily
+    live: false
+    dynamicId: 454405156217475634

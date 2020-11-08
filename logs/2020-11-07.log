@@ -1,0 +1,382 @@
+2020-11-07 17:01:35 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 17:01:35 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:01:35 V/Net 2945271969: Recv: LoginPacketResponse.Captcha.Picture
+2020-11-07 17:01:46 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:01:46 V/Net 2945271969: Recv: Error(title=禁止登录, message=当前上网环境异常，请更换网络环境或在常用设备上登录或稍后再试。, errorInfo=)
+2020-11-07 17:02:49 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 17:02:49 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:02:49 V/Net 2945271969: Recv: LoginPacketResponse.Captcha.Picture
+2020-11-07 17:02:54 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:02:54 V/Net 2945271969: Recv: Error(title=禁止登录, message=当前上网环境异常，请更换网络环境或在常用设备上登录或稍后再试。, errorInfo=)
+2020-11-07 17:05:32 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 17:05:32 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:05:33 V/Net 2945271969: Recv: LoginPacketResponse.Captcha.Picture
+2020-11-07 17:05:44 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:05:44 V/Net 2945271969: Recv: Error(title=禁止登录, message=当前上网环境异常，请更换网络环境或在常用设备上登录或稍后再试。, errorInfo=)
+2020-11-07 17:09:11 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 17:09:11 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:09:11 V/Net 2945271969: Recv: LoginPacketResponse.Captcha.Picture
+2020-11-07 17:09:18 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:09:18 V/Net 2945271969: Recv: Error(title=禁止登录, message=当前上网环境异常，请更换网络环境或在常用设备上登录或稍后再试。, errorInfo=)
+2020-11-07 17:12:00 I/Net 1527296113: Connected to server 42.81.169.46:8080
+2020-11-07 17:12:00 V/Net 1527296113: Send: wtlogin.login
+2020-11-07 17:12:00 V/Net 1527296113: Recv: UnsafeLogin(url=https://ti.qq.com/safe/verify?_wv=2&_wwv=128&uin=1527296113&sig=waex9IPExZ9ccEHhpXw6NOgkoZb35q%2FwqE0b8B%2FzTYopH389RoVRGcFVfieQ%2BoXgbGRrhPZ%2FwFUx3IzPrgjOEw%2BkeBFVUXm85ou9%2FmXkyEdT1ZpduTzoGhREeApEep2Q)
+2020-11-07 17:12:21 V/Net 1527296113: Send: wtlogin.login
+2020-11-07 17:12:21 V/Net 1527296113: Recv: UnsafeLogin(url=https://ti.qq.com/safe/verify?_wv=2&_wwv=128&uin=1527296113&sig=KQebFX8lcoFnXmQ8wa81PoL4v9yyDSkCKxUSeXbT%2BZRr5LiL7PReOS7KqOm7tt%2FBekwRLvKsdbSjf8YASc2GX0dFzsNkYbeuWx1RF%2FpztvhJXqrH4soQgQaTqRAfdiim)
+2020-11-07 17:12:23 V/Net 1527296113: Send: wtlogin.login
+2020-11-07 17:12:23 V/Net 1527296113: Recv: UnsafeLogin(url=https://ti.qq.com/safe/verify?_wv=2&_wwv=128&uin=1527296113&sig=WGKrC2efMMGU3Acu4UZ5vnL7gWWysZG9KmNOdDUam4yypVie4XTJupzqgbxezfWXtUQxH3zvQBGG96DQoLBm%2F9rg%2BN%2BVBrdxF1VjAjgpFNZJiUPzgQg5LHRWK900AOsU)
+2020-11-07 17:12:24 V/Net 1527296113: Send: wtlogin.login
+2020-11-07 17:12:25 V/Net 1527296113: Recv: UnsafeLogin(url=https://ti.qq.com/safe/verify?_wv=2&_wwv=128&uin=1527296113&sig=lhkxeraFekIpEiA%2FB5SJOZCyzWnG%2FgZKgw5gSRZoe%2FMgZQm2MCkTPyqG%2Fe4PiV7%2BORJGmIvyo2opQRMHbUPMf9VNwLRtXB8nV9r2MBdjKJFrg2oPjNAW%2F1kzmhAnIs5A)
+2020-11-07 17:13:08 V/Net 1527296113: Send: wtlogin.login
+2020-11-07 17:13:08 V/Net 1527296113: Recv: WtLogin.Login.LoginPacketResponse.DeviceLockLogin
+2020-11-07 17:13:08 V/Net 1527296113: Send: wtlogin.login
+2020-11-07 17:13:09 V/Net 1527296113: Recv: LoginPacketResponse.Success
+2020-11-07 17:13:09 I/Net 1527296113: Login successful
+2020-11-07 17:13:09 V/Net 1527296113: Send: StatSvc.register
+2020-11-07 17:13:09 V/Net 1527296113: Recv: Response(StatSvc.register)
+2020-11-07 17:13:09 I/Net 1527296113: 开始加载好友信息
+2020-11-07 17:13:09 I/Net 1527296113: 开始加载群组列表与群成员列表
+2020-11-07 17:13:09 V/Net 1527296113: Send: friendlist.GetTroopListReqV2
+2020-11-07 17:13:09 V/Net 1527296113: Send: friendlist.getFriendGroupList
+2020-11-07 17:13:09 V/Net 1527296113: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 17:13:09 V/Net 1527296113: Send: friendlist.GetTroopMemberListReq
+2020-11-07 17:13:09 V/Net 1527296113: Send: friendlist.GetTroopMemberListReq
+2020-11-07 17:13:09 V/Net 1527296113: Send: friendlist.GetTroopMemberListReq
+2020-11-07 17:13:09 V/Net 1527296113: Send: friendlist.GetTroopMemberListReq
+2020-11-07 17:13:09 V/Net 1527296113: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 17:13:09 V/Net 1527296113: 正在加载好友列表 47/47
+2020-11-07 17:13:09 I/Net 1527296113: 好友列表加载完成, 共 47个
+2020-11-07 17:13:09 V/Net 1527296113: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 17:13:09 V/Net 1527296113: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 17:13:09 V/Net 1527296113: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 17:13:09 V/Net 1527296113: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 17:13:09 V/Net 1527296113: Send: friendlist.GetTroopMemberListReq
+2020-11-07 17:13:09 V/Net 1527296113: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 17:13:09 I/Net 1527296113: 群组列表与群成员加载完成, 共 4个
+2020-11-07 17:13:09 I/Net 1527296113: Syncing friend message history...
+2020-11-07 17:13:09 I/Net 1527296113: Awaiting ConfigPushSvc.PushReq
+2020-11-07 17:13:09 V/Net 1527296113: Send: MessageSvc.PbGetMsg
+2020-11-07 17:13:10 V/Net 1527296113: Send: MessageSvc.PbDeleteMsg
+2020-11-07 17:13:10 V/Net 1527296113: Send: MessageSvc.PbGetMsg
+2020-11-07 17:13:10 V/Net 1527296113: Send: MessageSvc.PbDeleteMsg
+2020-11-07 17:13:10 V/Net 1527296113: Send: MessageSvc.PbGetMsg
+2020-11-07 17:13:10 V/Net 1527296113: Send: MessageSvc.PbDeleteMsg
+2020-11-07 17:13:10 I/Net 1527296113: Syncing friend message history: Success
+2020-11-07 17:13:12 V/Net 1527296113: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 17:13:12 V/Net 1527296113: Send: ConfigPushSvc.PushResp
+2020-11-07 17:13:12 I/Net 1527296113: ConfigPushSvc.PushReq: Success
+2020-11-07 17:13:12 D/Net 1527296113: Received unknown commandName: ConfigPushSvc.PushDomain
+2020-11-07 17:13:12 V/Net 1527296113: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 17:13:12 V/Net 1527296113: Send: ConfigPushSvc.PushResp
+2020-11-07 17:14:09 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 17:14:09 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:14:09 V/Net 2945271969: Recv: LoginPacketResponse.Captcha.Picture
+2020-11-07 17:14:15 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:14:15 V/Net 2945271969: Recv: Error(title=禁止登录, message=当前上网环境异常，请更换网络环境或在常用设备上登录或稍后再试。, errorInfo=)
+2020-11-07 17:17:42 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 17:17:42 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:17:42 V/Net 2945271969: Recv: LoginPacketResponse.Captcha.Picture
+2020-11-07 17:17:48 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:17:48 V/Net 2945271969: Recv: Error(title=禁止登录, message=当前上网环境异常，请更换网络环境或在常用设备上登录或稍后再试。, errorInfo=)
+2020-11-07 17:21:45 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 17:21:45 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:21:45 V/Net 2945271969: Recv: LoginPacketResponse.Captcha.Picture
+2020-11-07 17:21:50 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:21:51 V/Net 2945271969: Recv: UnsafeLogin(url=https://ti.qq.com/safe/verify?_wv=2&_wwv=128&uin=2945271969&sig=FHykEAvig8PGT86XrI5u0FJQcXtTPC%2FBSLlJ58vl%2FZstAgK9TdR1XliFhaU60zQLZbvLWIO8qi%2F2kV%2FiNb9qgvwd1bcqYbBgjz07fXDwq8AtFloyF9AmPU7ee0nz6Wwj)
+2020-11-07 17:22:14 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:22:14 V/Net 2945271969: Recv: WtLogin.Login.LoginPacketResponse.DeviceLockLogin
+2020-11-07 17:22:14 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 17:22:14 V/Net 2945271969: Recv: LoginPacketResponse.Success
+2020-11-07 17:22:14 I/Net 2945271969: Login successful
+2020-11-07 17:22:14 V/Net 2945271969: Send: StatSvc.register
+2020-11-07 17:22:14 V/Net 2945271969: Recv: Response(StatSvc.register)
+2020-11-07 17:22:14 I/Net 2945271969: 开始加载好友信息
+2020-11-07 17:22:14 I/Net 2945271969: 开始加载群组列表与群成员列表
+2020-11-07 17:22:14 V/Net 2945271969: Send: friendlist.GetTroopListReqV2
+2020-11-07 17:22:14 V/Net 2945271969: Send: friendlist.getFriendGroupList
+2020-11-07 17:22:14 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 17:22:14 V/Net 2945271969: Send: friendlist.GetTroopMemberListReq
+2020-11-07 17:22:14 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 17:22:14 V/Net 2945271969: 正在加载好友列表 3/3
+2020-11-07 17:22:14 I/Net 2945271969: 好友列表加载完成, 共 3个
+2020-11-07 17:22:14 V/Net 2945271969: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 17:22:14 I/Net 2945271969: 群组列表与群成员加载完成, 共 1个
+2020-11-07 17:22:14 I/Net 2945271969: Syncing friend message history...
+2020-11-07 17:22:14 I/Net 2945271969: Awaiting ConfigPushSvc.PushReq
+2020-11-07 17:22:14 V/Net 2945271969: Send: MessageSvc.PbGetMsg
+2020-11-07 17:22:15 V/Net 2945271969: Send: MessageSvc.PbDeleteMsg
+2020-11-07 17:22:15 D/Net 2945271969: unknown PbGetMsg type 528, data=08 1D 12 34 08 14 A2 01 2F 08 A1 91 B5 FC 0A 12 09 08 A2 9C 01 12 03 42 6F 74 12 07 08 AE 9C 01 12 01 01 12 13 08 B0 9C 01 12 0D 38 36 31 39 38 36 33 36 37 37 37 38 35
+2020-11-07 17:22:15 D/Net 2945271969: unknown PbGetMsg type 191, data=01 18 C8 85 C0 BA BB 89 88 B2 22 C5 7C F5 A5 4B 23 8E 73 96 F4 89 C4 E8 DC DD 27 14 00 00 00 00 00 3A 00 00 00 00 00 00 00 00 02 03 F2 00 1C 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 02 00 00 07 C2 00 00 00 00 03 ED 00 0D 08 01 12 00 18 00 22 03 42 6F 74 28 01
+2020-11-07 17:22:15 D/Net 2945271969: unknown PbGetMsg type 528, data=08 23 12 04 1A 02 08 01
+2020-11-07 17:22:15 D/Net 2945271969: unknown PbGetMsg type 528, data=08 23 12 04 1A 02 08 00
+2020-11-07 17:22:15 D/Net 2945271969: unknown PbGetMsg type 528, data=08 23 12 04 1A 02 08 00
+2020-11-07 17:22:15 D/Net 2945271969: unknown PbGetMsg type 528, data=08 23 12 3C 0A 3A 08 A1 91 B5 FC 0A 10 BC 9A CD C9 0C 18 02 20 00 28 01 30 00 38 04 40 03 48 81 BC 98 FD 05 52 00 5A 12 E6 9D A5 E8 87 AA E6 9D A1 E4 BB B6 E6 9F A5 E6 89 BE 62 00 6A 00 72 00
+2020-11-07 17:22:15 D/Net 2945271969: unknown PbGetMsg type 528, data=08 23 12 32 12 30 08 A1 91 B5 FC 0A 10 BC 9A CD C9 0C 18 03 20 81 BC 98 FD 05 2A 12 E6 9D A5 E8 87 AA E6 9D A1 E4 BB B6 E6 9F A5 E6 89 BE 3A 00 42 00 4A 00 52 00
+2020-11-07 17:22:15 I/Net 2945271969: Syncing friend message history: Success
+2020-11-07 17:22:17 V/Net 2945271969: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 17:22:17 V/Net 2945271969: Send: ConfigPushSvc.PushResp
+2020-11-07 17:22:17 I/Net 2945271969: ConfigPushSvc.PushReq: Success
+2020-11-07 17:22:17 D/Net 2945271969: Received unknown commandName: ConfigPushSvc.PushDomain
+2020-11-07 17:22:17 V/Net 2945271969: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 17:22:17 V/Net 2945271969: Send: ConfigPushSvc.PushResp
+2020-11-07 17:22:22 D/Net 2945271969: Received unknown commandName: StatSvc.SvcReqMSFLoginNotify
+2020-11-07 17:22:22 D/Net 2945271969: Received unknown commandName: StatSvc.SvcReqMSFLoginNotify
+2020-11-07 17:22:22 D/Net 2945271969: Received unknown commandName: StatSvc.SvcReqMSFLoginNotify
+2020-11-07 17:23:14 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 17:23:14 V/Net 2945271969: Recv: Heartbeat.Alive.Response
+2020-11-07 17:24:14 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 17:24:14 V/Net 2945271969: Recv: Heartbeat.Alive.Response
+2020-11-07 20:30:16 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 20:30:16 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:30:16 V/Net 2945271969: Recv: WtLogin.Login.LoginPacketResponse.DeviceLockLogin
+2020-11-07 20:30:16 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:30:16 V/Net 2945271969: Recv: LoginPacketResponse.Success
+2020-11-07 20:30:16 I/Net 2945271969: Login successful
+2020-11-07 20:30:16 V/Net 2945271969: Send: StatSvc.register
+2020-11-07 20:30:16 V/Net 2945271969: Recv: Response(StatSvc.register)
+2020-11-07 20:30:16 I/Net 2945271969: 开始加载好友信息
+2020-11-07 20:30:16 I/Net 2945271969: 开始加载群组列表与群成员列表
+2020-11-07 20:30:16 V/Net 2945271969: Send: friendlist.GetTroopListReqV2
+2020-11-07 20:30:16 V/Net 2945271969: Send: friendlist.getFriendGroupList
+2020-11-07 20:30:16 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:30:16 V/Net 2945271969: Send: friendlist.GetTroopMemberListReq
+2020-11-07 20:30:16 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:30:16 V/Net 2945271969: 正在加载好友列表 3/3
+2020-11-07 20:30:16 I/Net 2945271969: 好友列表加载完成, 共 3个
+2020-11-07 20:30:17 V/Net 2945271969: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 20:30:17 I/Net 2945271969: 群组列表与群成员加载完成, 共 1个
+2020-11-07 20:30:17 I/Net 2945271969: Syncing friend message history...
+2020-11-07 20:30:17 I/Net 2945271969: Awaiting ConfigPushSvc.PushReq
+2020-11-07 20:30:17 V/Net 2945271969: Send: MessageSvc.PbGetMsg
+2020-11-07 20:30:17 V/Net 2945271969: Send: MessageSvc.PbDeleteMsg
+2020-11-07 20:30:17 I/Net 2945271969: Syncing friend message history: Success
+2020-11-07 20:30:19 V/Net 2945271969: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 20:30:19 V/Net 2945271969: Send: ConfigPushSvc.PushResp
+2020-11-07 20:30:19 I/Net 2945271969: ConfigPushSvc.PushReq: Success
+2020-11-07 20:30:19 D/Net 2945271969: Received unknown commandName: ConfigPushSvc.PushDomain
+2020-11-07 20:30:19 V/Net 2945271969: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 20:30:19 V/Net 2945271969: Send: ConfigPushSvc.PushResp
+2020-11-07 20:32:03 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 20:32:03 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:32:03 V/Net 2945271969: Recv: WtLogin.Login.LoginPacketResponse.DeviceLockLogin
+2020-11-07 20:32:03 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:32:04 V/Net 2945271969: Recv: LoginPacketResponse.Success
+2020-11-07 20:32:04 I/Net 2945271969: Login successful
+2020-11-07 20:32:04 V/Net 2945271969: Send: StatSvc.register
+2020-11-07 20:32:04 V/Net 2945271969: Recv: Response(StatSvc.register)
+2020-11-07 20:32:04 I/Net 2945271969: 开始加载好友信息
+2020-11-07 20:32:04 I/Net 2945271969: 开始加载群组列表与群成员列表
+2020-11-07 20:32:04 V/Net 2945271969: Send: friendlist.GetTroopListReqV2
+2020-11-07 20:32:04 V/Net 2945271969: Send: friendlist.getFriendGroupList
+2020-11-07 20:32:04 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:32:04 V/Net 2945271969: Send: friendlist.GetTroopMemberListReq
+2020-11-07 20:32:04 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:32:04 V/Net 2945271969: 正在加载好友列表 3/3
+2020-11-07 20:32:04 I/Net 2945271969: 好友列表加载完成, 共 3个
+2020-11-07 20:32:04 V/Net 2945271969: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 20:32:04 I/Net 2945271969: 群组列表与群成员加载完成, 共 1个
+2020-11-07 20:32:04 I/Net 2945271969: Syncing friend message history...
+2020-11-07 20:32:04 I/Net 2945271969: Awaiting ConfigPushSvc.PushReq
+2020-11-07 20:32:04 V/Net 2945271969: Send: MessageSvc.PbGetMsg
+2020-11-07 20:32:04 V/Net 2945271969: Send: MessageSvc.PbDeleteMsg
+2020-11-07 20:32:04 I/Net 2945271969: Syncing friend message history: Success
+2020-11-07 20:32:07 D/Net 2945271969: Received unknown commandName: ConfigPushSvc.PushDomain
+2020-11-07 20:32:07 V/Net 2945271969: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 20:32:07 V/Net 2945271969: Send: ConfigPushSvc.PushResp
+2020-11-07 20:32:07 I/Net 2945271969: ConfigPushSvc.PushReq: Success
+2020-11-07 20:33:03 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 20:33:03 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:33:03 V/Net 2945271969: Recv: WtLogin.Login.LoginPacketResponse.DeviceLockLogin
+2020-11-07 20:33:03 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:33:03 V/Net 2945271969: Recv: LoginPacketResponse.Success
+2020-11-07 20:33:03 I/Net 2945271969: Login successful
+2020-11-07 20:33:03 V/Net 2945271969: Send: StatSvc.register
+2020-11-07 20:33:04 V/Net 2945271969: Recv: Response(StatSvc.register)
+2020-11-07 20:33:04 I/Net 2945271969: 开始加载好友信息
+2020-11-07 20:33:04 I/Net 2945271969: 开始加载群组列表与群成员列表
+2020-11-07 20:33:04 V/Net 2945271969: Send: friendlist.GetTroopListReqV2
+2020-11-07 20:33:04 V/Net 2945271969: Send: friendlist.getFriendGroupList
+2020-11-07 20:33:04 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:33:04 V/Net 2945271969: Send: friendlist.GetTroopMemberListReq
+2020-11-07 20:33:04 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:33:04 V/Net 2945271969: 正在加载好友列表 3/3
+2020-11-07 20:33:04 I/Net 2945271969: 好友列表加载完成, 共 3个
+2020-11-07 20:33:04 V/Net 2945271969: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 20:33:04 I/Net 2945271969: 群组列表与群成员加载完成, 共 1个
+2020-11-07 20:33:04 I/Net 2945271969: Syncing friend message history...
+2020-11-07 20:33:04 I/Net 2945271969: Awaiting ConfigPushSvc.PushReq
+2020-11-07 20:33:04 V/Net 2945271969: Send: MessageSvc.PbGetMsg
+2020-11-07 20:33:04 V/Net 2945271969: Send: MessageSvc.PbDeleteMsg
+2020-11-07 20:33:04 I/Net 2945271969: Syncing friend message history: Success
+2020-11-07 20:33:07 D/Net 2945271969: Received unknown commandName: ConfigPushSvc.PushDomain
+2020-11-07 20:33:07 V/Net 2945271969: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 20:33:07 V/Net 2945271969: Send: ConfigPushSvc.PushResp
+2020-11-07 20:33:07 I/Net 2945271969: ConfigPushSvc.PushReq: Success
+2020-11-07 20:34:04 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 20:34:04 V/Net 2945271969: Recv: Heartbeat.Alive.Response
+2020-11-07 20:35:04 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 20:35:04 V/Net 2945271969: Recv: Heartbeat.Alive.Response
+2020-11-07 20:35:38 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 20:35:38 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:35:38 V/Net 2945271969: Recv: WtLogin.Login.LoginPacketResponse.DeviceLockLogin
+2020-11-07 20:35:38 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:35:39 V/Net 2945271969: Recv: LoginPacketResponse.Success
+2020-11-07 20:35:39 I/Net 2945271969: Login successful
+2020-11-07 20:35:39 V/Net 2945271969: Send: StatSvc.register
+2020-11-07 20:35:39 V/Net 2945271969: Recv: Response(StatSvc.register)
+2020-11-07 20:35:39 I/Net 2945271969: 开始加载好友信息
+2020-11-07 20:35:39 I/Net 2945271969: 开始加载群组列表与群成员列表
+2020-11-07 20:35:39 V/Net 2945271969: Send: friendlist.GetTroopListReqV2
+2020-11-07 20:35:39 V/Net 2945271969: Send: friendlist.getFriendGroupList
+2020-11-07 20:35:39 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:35:39 V/Net 2945271969: Send: friendlist.GetTroopMemberListReq
+2020-11-07 20:35:39 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:35:39 V/Net 2945271969: 正在加载好友列表 3/3
+2020-11-07 20:35:39 I/Net 2945271969: 好友列表加载完成, 共 3个
+2020-11-07 20:35:39 V/Net 2945271969: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 20:35:39 I/Net 2945271969: 群组列表与群成员加载完成, 共 1个
+2020-11-07 20:35:39 I/Net 2945271969: Syncing friend message history...
+2020-11-07 20:35:39 I/Net 2945271969: Awaiting ConfigPushSvc.PushReq
+2020-11-07 20:35:39 V/Net 2945271969: Send: MessageSvc.PbGetMsg
+2020-11-07 20:35:39 V/Net 2945271969: Send: MessageSvc.PbDeleteMsg
+2020-11-07 20:35:39 I/Net 2945271969: Syncing friend message history: Success
+2020-11-07 20:35:42 D/Net 2945271969: Received unknown commandName: ConfigPushSvc.PushDomain
+2020-11-07 20:35:42 V/Net 2945271969: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 20:35:42 V/Net 2945271969: Send: ConfigPushSvc.PushResp
+2020-11-07 20:35:42 I/Net 2945271969: ConfigPushSvc.PushReq: Success
+2020-11-07 20:35:54 V/Net 2945271969: Send: MessageSvc.PbSendMsg
+2020-11-07 20:35:54 V/Net 2945271969: Recv: MessageSvcPbSendMsg.Response.SUCCESS
+2020-11-07 20:35:56 V/Net 2945271969: Send: MessageSvc.PbSendMsg
+2020-11-07 20:35:56 V/Net 2945271969: Recv: MessageSvcPbSendMsg.Response.SUCCESS
+2020-11-07 20:35:59 V/Net 2945271969: Send: MessageSvc.PbSendMsg
+2020-11-07 20:35:59 V/Net 2945271969: Recv: MessageSvcPbSendMsg.Response.SUCCESS
+2020-11-07 20:36:41 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 20:36:41 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:36:41 V/Net 2945271969: Recv: WtLogin.Login.LoginPacketResponse.DeviceLockLogin
+2020-11-07 20:36:41 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:36:41 V/Net 2945271969: Recv: LoginPacketResponse.Success
+2020-11-07 20:36:41 I/Net 2945271969: Login successful
+2020-11-07 20:36:41 V/Net 2945271969: Send: StatSvc.register
+2020-11-07 20:36:41 V/Net 2945271969: Recv: Response(StatSvc.register)
+2020-11-07 20:36:41 I/Net 2945271969: 开始加载好友信息
+2020-11-07 20:36:41 I/Net 2945271969: 开始加载群组列表与群成员列表
+2020-11-07 20:36:41 V/Net 2945271969: Send: friendlist.GetTroopListReqV2
+2020-11-07 20:36:41 V/Net 2945271969: Send: friendlist.getFriendGroupList
+2020-11-07 20:36:41 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:36:41 V/Net 2945271969: Send: friendlist.GetTroopMemberListReq
+2020-11-07 20:36:41 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:36:41 V/Net 2945271969: 正在加载好友列表 3/3
+2020-11-07 20:36:41 I/Net 2945271969: 好友列表加载完成, 共 3个
+2020-11-07 20:36:42 V/Net 2945271969: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 20:36:42 I/Net 2945271969: 群组列表与群成员加载完成, 共 1个
+2020-11-07 20:36:42 I/Net 2945271969: Syncing friend message history...
+2020-11-07 20:36:42 I/Net 2945271969: Awaiting ConfigPushSvc.PushReq
+2020-11-07 20:36:42 V/Net 2945271969: Send: MessageSvc.PbGetMsg
+2020-11-07 20:36:42 V/Net 2945271969: Send: MessageSvc.PbDeleteMsg
+2020-11-07 20:36:42 I/Net 2945271969: Syncing friend message history: Success
+2020-11-07 20:36:44 D/Net 2945271969: Received unknown commandName: ConfigPushSvc.PushDomain
+2020-11-07 20:36:44 V/Net 2945271969: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 20:36:44 V/Net 2945271969: Send: ConfigPushSvc.PushResp
+2020-11-07 20:36:44 I/Net 2945271969: ConfigPushSvc.PushReq: Success
+2020-11-07 20:37:18 V/Net 2945271969: Send: MessageSvc.PbSendMsg
+2020-11-07 20:37:18 V/Net 2945271969: Recv: MessageSvcPbSendMsg.Response.SUCCESS
+2020-11-07 20:37:57 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 20:37:57 V/Net 2945271969: Recv: Heartbeat.Alive.Response
+2020-11-07 20:40:31 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 20:40:31 V/Net 2945271969: Send: MessageSvc.PbSendMsg
+2020-11-07 20:40:36 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 20:40:36 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:40:37 V/Net 2945271969: Recv: WtLogin.Login.LoginPacketResponse.DeviceLockLogin
+2020-11-07 20:40:37 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:40:37 V/Net 2945271969: Recv: LoginPacketResponse.Success
+2020-11-07 20:40:37 I/Net 2945271969: Login successful
+2020-11-07 20:40:37 V/Net 2945271969: Send: StatSvc.register
+2020-11-07 20:40:37 V/Net 2945271969: Recv: Response(StatSvc.register)
+2020-11-07 20:40:37 I/Net 2945271969: 开始加载好友信息
+2020-11-07 20:40:37 I/Net 2945271969: 开始加载群组列表与群成员列表
+2020-11-07 20:40:37 V/Net 2945271969: Send: friendlist.GetTroopListReqV2
+2020-11-07 20:40:37 V/Net 2945271969: Send: friendlist.getFriendGroupList
+2020-11-07 20:40:37 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:40:37 V/Net 2945271969: Send: friendlist.GetTroopMemberListReq
+2020-11-07 20:40:37 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:40:37 V/Net 2945271969: 正在加载好友列表 3/3
+2020-11-07 20:40:37 I/Net 2945271969: 好友列表加载完成, 共 3个
+2020-11-07 20:40:37 V/Net 2945271969: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 20:40:37 I/Net 2945271969: 群组列表与群成员加载完成, 共 1个
+2020-11-07 20:40:37 I/Net 2945271969: Syncing friend message history...
+2020-11-07 20:40:37 I/Net 2945271969: Awaiting ConfigPushSvc.PushReq
+2020-11-07 20:40:37 V/Net 2945271969: Send: MessageSvc.PbGetMsg
+2020-11-07 20:40:37 V/Net 2945271969: Send: MessageSvc.PbDeleteMsg
+2020-11-07 20:40:37 I/Net 2945271969: Syncing friend message history: Success
+2020-11-07 20:40:40 D/Net 2945271969: Received unknown commandName: ConfigPushSvc.PushDomain
+2020-11-07 20:40:40 V/Net 2945271969: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 20:40:40 V/Net 2945271969: Send: ConfigPushSvc.PushResp
+2020-11-07 20:40:40 I/Net 2945271969: ConfigPushSvc.PushReq: Success
+2020-11-07 20:40:54 V/Net 2945271969: Send: MessageSvc.PbSendMsg
+2020-11-07 20:40:54 V/Net 2945271969: Recv: MessageSvcPbSendMsg.Response.SUCCESS
+2020-11-07 20:41:37 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 20:41:37 V/Net 2945271969: Recv: Heartbeat.Alive.Response
+2020-11-07 20:42:04 V/Net 2945271969: Send: MessageSvc.PbSendMsg
+2020-11-07 20:42:04 V/Net 2945271969: Recv: MessageSvcPbSendMsg.Response.SUCCESS
+2020-11-07 20:46:29 I/Net 2945271969: Connected to server 42.81.169.46:8080
+2020-11-07 20:46:29 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:46:29 V/Net 2945271969: Recv: WtLogin.Login.LoginPacketResponse.DeviceLockLogin
+2020-11-07 20:46:29 V/Net 2945271969: Send: wtlogin.login
+2020-11-07 20:46:30 V/Net 2945271969: Recv: LoginPacketResponse.Success
+2020-11-07 20:46:30 I/Net 2945271969: Login successful
+2020-11-07 20:46:30 V/Net 2945271969: Send: StatSvc.register
+2020-11-07 20:46:30 V/Net 2945271969: Recv: Response(StatSvc.register)
+2020-11-07 20:46:30 I/Net 2945271969: 开始加载好友信息
+2020-11-07 20:46:30 I/Net 2945271969: 开始加载群组列表与群成员列表
+2020-11-07 20:46:30 V/Net 2945271969: Send: friendlist.GetTroopListReqV2
+2020-11-07 20:46:30 V/Net 2945271969: Send: friendlist.getFriendGroupList
+2020-11-07 20:46:30 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:46:30 V/Net 2945271969: Send: friendlist.GetTroopMemberListReq
+2020-11-07 20:46:30 V/Net 2945271969: Recv: FriendList.GetFriendGroupList.Response
+2020-11-07 20:46:30 V/Net 2945271969: 正在加载好友列表 3/3
+2020-11-07 20:46:30 I/Net 2945271969: 好友列表加载完成, 共 3个
+2020-11-07 20:46:30 V/Net 2945271969: Recv: FriendList.GetTroopMemberList.Response
+2020-11-07 20:46:30 I/Net 2945271969: 群组列表与群成员加载完成, 共 1个
+2020-11-07 20:46:30 I/Net 2945271969: Syncing friend message history...
+2020-11-07 20:46:30 I/Net 2945271969: Awaiting ConfigPushSvc.PushReq
+2020-11-07 20:46:30 V/Net 2945271969: Send: MessageSvc.PbGetMsg
+2020-11-07 20:46:30 V/Net 2945271969: Send: MessageSvc.PbDeleteMsg
+2020-11-07 20:46:30 I/Net 2945271969: Syncing friend message history: Success
+2020-11-07 20:46:33 D/Net 2945271969: Received unknown commandName: ConfigPushSvc.PushDomain
+2020-11-07 20:46:33 V/Net 2945271969: Recv: ConfigPushSvc.PushReq.PushReqResponse.Success
+2020-11-07 20:46:33 V/Net 2945271969: Send: ConfigPushSvc.PushResp
+2020-11-07 20:46:33 I/Net 2945271969: ConfigPushSvc.PushReq: Success
+2020-11-07 20:46:47 V/Net 2945271969: Send: ImgStore.GroupPicUp
+2020-11-07 20:46:48 V/Net 2945271969: Recv: RequireUpload(fileId=2194881225, uKey=[69, 121, 112, -50, -118, 71, 60, -107, -68, 22, 58, -15, 25, -69, -1, -118, 16, 112, 29, 24, -87, 19, 73, 83, 63, 2, -23, -60, -34, 45, 26, 48, 102, -31, 30, -71, -73, 36, -107, 115, -83, 95, -71, 72, -124, -14, 104, 110, -96, 30, -12, 19, 28, -101, 84, 64, -83, -81, -86, 121, -35, 63, 7, -9, 74, 50, 79, -62, 111, -81, 103, 25, -35, 42, 81, 1, -4, 67, 87, -33, 51, 54, -83, 56, 4, 20, -64, -38, -97, -125, -65, -19, 74, -91, 63, 108, 67, 10, -38, 5, -113, -39, -44, -100, -88, 57, -94, 69, -128, 124, 8, -66, -84, -9, -128, -34, -116, 57, 99, 70, -57, -49, -124, -73, -64, 16, -63, -45])
+2020-11-07 20:46:48 V/Net 2945271969: [Highway] Uploading group image to 120.241.186.91:443, size=157.21 KiB
+2020-11-07 20:46:48 V/Net 2945271969: [Highway] Uploading group image: succeed at 0 KiB/s
+2020-11-07 20:46:48 V/Net 2945271969: Send: MessageSvc.PbSendMsg
+2020-11-07 20:46:49 V/Net 2945271969: Recv: MessageSvcPbSendMsg.Response.SUCCESS
+2020-11-07 20:47:30 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 20:47:30 V/Net 2945271969: Recv: Heartbeat.Alive.Response
+2020-11-07 20:47:58 V/Net 2945271969: Send: ImgStore.GroupPicUp
+2020-11-07 20:47:59 V/Net 2945271969: Recv: RequireUpload(fileId=3106354345, uKey=[-18, -9, -84, 29, 47, 98, -87, -121, -121, -63, 22, 31, 9, 109, -44, 50, -51, -103, -52, 123, -124, -64, 96, 109, 63, 57, -65, -15, 23, 114, -62, 43, -97, 78, -69, -80, -96, 26, -41, 8, -75, -66, -20, 26, 9, -124, -98, 18, -44, 118, 78, -74, 8, -76, 86, 34, 103, -40, 39, 9, -93, 121, -22, 106, 44, -83, 56, 26, 124, 9, -86, -62, 38, 124, -103, 126, -61, -80, -48, 79, -121, 9, 12, -101, -93, 115, -100, 109, 104, 21, 97, -5, -126, 106, 119, -36, 76, -30, 109, 64, 77, -29, 34, 81, -96, -85, 73, 30, -125, 92, 119, -35, 24, 65, -58, 73, -37, 50, 85, 89, 116, -58, 53, 21, 17, 56, -23, 4])
+2020-11-07 20:47:59 V/Net 2945271969: [Highway] Uploading group image to 120.241.186.254:443, size=157.71 KiB
+2020-11-07 20:47:59 V/Net 2945271969: [Highway] Uploading group image: succeed at 0 KiB/s
+2020-11-07 20:47:59 V/Net 2945271969: Send: MessageSvc.PbSendMsg
+2020-11-07 20:47:59 V/Net 2945271969: Recv: MessageSvcPbSendMsg.Response.SUCCESS
+2020-11-07 20:48:30 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 20:48:30 V/Net 2945271969: Recv: Heartbeat.Alive.Response
+2020-11-07 20:49:09 V/Net 2945271969: Send: ImgStore.GroupPicUp
+2020-11-07 20:49:10 V/Net 2945271969: Recv: RequireUpload(fileId=2363463091, uKey=[-103, -51, 43, 51, 115, -108, -32, 110, 55, -110, -109, 127, -109, -86, 56, 86, -58, -127, -128, 6, 86, 60, 105, -117, 103, -35, -78, 76, 26, -72, -5, -41, -59, 65, -83, -10, 36, 34, -121, 41, 41, 82, 81, 26, 58, -52, 113, -96, -118, 11, 16, -44, -101, 90, 50, 88, 31, 76, -113, -40, 62, -109, 55, 64, -87, 106, 86, -113, 54, -52, -114, 89, 121, -63, 104, -46, 40, -64, -115, -46, -77, 59, -68, -7, 30, 1, -56, 126, -120, -87, -121, -62, -29, -22, 106, -70, -11, 125, -41, 70, 31, 5, 28, 86, 122, -3, -69, 64, 19, 123, -29, 81, 65, 78, -116, 94, 78, -116, -42, 57, -31, 14, 61, -121, 84, -102, 25, 66])
+2020-11-07 20:49:10 V/Net 2945271969: [Highway] Uploading group image to 112.60.8.41:443, size=157.88 KiB
+2020-11-07 20:49:10 V/Net 2945271969: [Highway] Uploading group image: succeed at 0 KiB/s
+2020-11-07 20:49:10 V/Net 2945271969: Send: MessageSvc.PbSendMsg
+2020-11-07 20:49:11 V/Net 2945271969: Recv: MessageSvcPbSendMsg.Response.SUCCESS
+2020-11-07 20:49:30 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 20:49:30 V/Net 2945271969: Recv: Heartbeat.Alive.Response
+2020-11-07 20:50:30 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 20:50:30 V/Net 2945271969: Recv: Heartbeat.Alive.Response
+2020-11-07 20:51:28 V/Net 2945271969: Send: ImgStore.GroupPicUp
+2020-11-07 20:51:28 V/Net 2945271969: Recv: RequireUpload(fileId=2256333075, uKey=[127, -59, -33, -50, 35, 37, 69, 70, -90, 93, 41, -38, -30, -91, 91, -56, -125, 72, -114, -25, 86, -52, 103, -75, -110, 96, -26, 95, 19, 89, -3, -68, -66, -118, -16, -84, 10, -65, 3, -35, -11, -114, 54, 32, -75, 84, 72, -124, -123, -65, -27, -47, 110, 116, -90, -5, -62, -121, -6, 127, 43, 43, -52, 121, 110, 33, -101, 25, -75, -111, 79, -101, -67, 120, -95, -102, -72, -5, -59, 7, 108, 115, -60, 26, 70, -124, 42, -31, -34, -61, 87, -109, -77, 67, 52, 124, 103, 3, -54, -111, -116, -67, 61, 119, -48, -45, 88, -19, 102, -113, -83, -78, 117, 102, -28, 122, 115, -57, 124, 109, -62, -85, 118, -83, 8, 77, 3, 20])
+2020-11-07 20:51:28 V/Net 2945271969: [Highway] Uploading group image to 112.60.8.142:443, size=158.53 KiB
+2020-11-07 20:51:29 V/Net 2945271969: [Highway] Uploading group image: succeed at 0 KiB/s
+2020-11-07 20:51:29 V/Net 2945271969: Send: MessageSvc.PbSendMsg
+2020-11-07 20:51:29 V/Net 2945271969: Recv: MessageSvcPbSendMsg.Response.SUCCESS
+2020-11-07 20:51:30 V/Net 2945271969: Send: Heartbeat.Alive
+2020-11-07 20:51:30 V/Net 2945271969: Recv: Heartbeat.Alive.Response
