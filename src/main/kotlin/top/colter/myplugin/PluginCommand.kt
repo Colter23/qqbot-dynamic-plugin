@@ -4,18 +4,36 @@ import net.mamoe.mirai.console.command.CommandSender
 import net.mamoe.mirai.console.command.SimpleCommand
 
 // 简单指令
-object DemoCommand : SimpleCommand(
+object AddCommand : SimpleCommand(
     PluginMain,
-    "foo",
-    description = "示例指令"
+    "add",
+    description = "添加群"
 ) {
-    // 会自动创建一个 ID 为 "org.example.example-plugin:command.foo" 的权限.
-
-
-    // 通过 /foo 调用, 参数自动解析
+    // 会自动创建一个 ID 为 "org.example.example-plugin:command.add" 的权限.
+    // 通过 /add 调用, 参数自动解析
     @Handler
-    suspend fun CommandSender.handle(int: Int, str: String) { // 函数名随意, 但参数需要按顺序放置.
+    suspend fun CommandSender.handle(group: Long) {
+        try{
+            PluginData.groupList.add(group)
+            sendMessage("添加成功( •̀ ω •́ )✧")
+        }catch (e:Exception){
+            sendMessage("添加失败`(*>﹏<*)′")
+        }
+    }
+}
 
-        sendMessage("/foo 的第一个参数是 $int, 第二个是 $str")
+object DeleteCommand : SimpleCommand(
+        PluginMain,
+        "delete",
+        description = "删除群"
+) {
+    @Handler
+    suspend fun CommandSender.handle(group: Long) {
+        try{
+            PluginData.groupList.remove(group)
+            sendMessage("删除成功`(*>﹏<*)′")
+        }catch (e:Exception){
+            sendMessage("添加失败(っ °Д °;)っ")
+        }
     }
 }

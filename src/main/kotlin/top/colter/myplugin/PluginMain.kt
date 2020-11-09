@@ -28,7 +28,8 @@ object PluginMain : KotlinPlugin(
         //加载插件数据
         PluginData.reload()
         //注册指令
-        DemoCommand.register()
+        AddCommand.register()
+        DeleteCommand.register()
         //注册监听器
         PluginMain.registerEvents(GroupListener)
 
@@ -36,15 +37,16 @@ object PluginMain : KotlinPlugin(
         PluginData.runPath = System.getProperty("user.dir")
 
         PluginMain.launch {
-            logger.info("run。。。。。")
+            logger.info("run...")
             //检测动态更新 并发送给群
-            forward()
+            ForwardDynamic.forward()
         }
 
     }
 
     override fun onDisable() {
-        DemoCommand.unregister()
+        AddCommand.unregister()
+        DeleteCommand.unregister()
     }
 
 }

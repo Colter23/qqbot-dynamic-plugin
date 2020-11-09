@@ -93,12 +93,14 @@ suspend fun getMsg(msg:String, unixTimestamp:Long, name:String, followNum:Int,dy
         var tin = false
         var ei = 0
         var el = 0
+        var ec = 0
         var i = 0
         //限制每行29个字符
         while(true){
 
             if (tempText[i] == '['){
                 ei = i
+                ec++
                 tin = true
             }
             if (tempText[i] == ']'){
@@ -114,8 +116,9 @@ suspend fun getMsg(msg:String, unixTimestamp:Long, name:String, followNum:Int,dy
                 el = 0
                 count = 0
                 i = 0
+                ec = 0
             }
-            if (tempText.length<29){
+            if (tempText.length-el+ec<29){
                 break
             }
             i++

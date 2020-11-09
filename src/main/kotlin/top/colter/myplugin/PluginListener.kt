@@ -2,9 +2,13 @@ package top.colter.myplugin
 
 import kotlinx.coroutines.SupervisorJob
 import net.mamoe.mirai.contact.Group
+import net.mamoe.mirai.contact.Member
 import net.mamoe.mirai.event.EventHandler
 import net.mamoe.mirai.event.ListenerHost
 import net.mamoe.mirai.message.MessageEvent
+import net.mamoe.mirai.message.data.At
+import net.mamoe.mirai.message.data.MessageChainBuilder
+import net.mamoe.mirai.message.uploadImage
 import java.io.File
 import javax.imageio.ImageIO
 
@@ -24,21 +28,33 @@ object GroupListener : ListenerHost {
             bot.getGroup(PluginConfig.adminGroup).sendMessage("$senderName(${sender.id})-> $msg")
         }
 
-        // @bot 回复
-        if (msg.contains("[mirai:at:${bot.id}")){
-            var ll = listOf<String>("( •̀ ω •́ )✧","φ(゜▽゜*)♪","(oﾟvﾟ)ノ","(¬‿¬)","(o゜▽゜)o☆",
-                    "(っ °Д °;)っ","ヽ(*。>Д<)o゜","￣へ￣","(￣▽￣)\"")
-            reply(ll[(ll.indices).random()])
+        if (msg=="#help"||msg=="#帮助"){
+            reply("#help 或 #帮助 : 指令列表"+
+                    "\n" +
+                    "#r : 从0-10随机一个数"+
+                    "\n" +
+                    "@机器人 : 随机回复表情")
         }
 
-        // 开启/关闭群的动态转发
-        if (msg.contains("#开启动态转发")){
-            PluginData.groupList.add(subject.id)
-            reply("开始向本群转发动态( •̀ ω •́ )✧")
+        var emoji = listOf<String>("( •̀ ω •́ )✧","φ(゜▽゜*)♪","(oﾟvﾟ)ノ","(o゜▽゜)o☆",
+                "(っ °Д °;)っ","ヽ(*。>Д<)o゜","￣へ￣","(￣▽￣)\"","(。・ω・)ノ","(´-ω-)",
+                "(੭ˊ꒳ˋ)੭✧","（っ ' ᵕ ' ｃ）","(੭ ᐕ))？","ฅ^•ω•^ฅ","(  `꒳´ )","(っ ॑꒳ ॑c)",
+                "⸜(* ॑꒳ ॑*  )⸝✩°｡⋆","(´･ω･`)?","`(*>﹏<*)′","(●'◡'●)","( •̀ ω •́ )y","(づ￣ 3￣)づ",
+                "=￣ω￣=","＞﹏＜","＞︿＜","≧ ﹏ ≦","o((>ω< ))o","ヽ(゜▽゜　)","(￣﹏￣；)","つ﹏⊂",
+                "(☆-ｖ-)")
+
+        // @bot 回复
+        if (msg.contains("[mirai:at:${bot.id}")){
+            reply(emoji[(emoji.indices).random()])
         }
-        if (msg.contains("#关闭动态转发")){
-            PluginData.groupList.remove(subject.id)
-            reply("关闭向本群转发动态(っ °Д °;)っ")
+
+        if (msg == "#r"){
+            var resMsg  = MessageChainBuilder(1)
+            resMsg.add(At(sender as Member))
+            resMsg.add("\n")
+            resMsg.add("你抽到的数字为: ${(0..10).random()}\n")
+            resMsg.add(emoji[(emoji.indices).random()])
+            reply(resMsg.asMessageChain())
         }
 
         // 回复辛苦了

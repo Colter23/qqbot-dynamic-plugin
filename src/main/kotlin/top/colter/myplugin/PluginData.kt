@@ -21,7 +21,7 @@ object PluginData : AutoSavePluginData() {
     // 动态计数
     var dynamicCount : Int by value(0)
 
-    // 转发群列表 可通过 #开启动态转发 添加
+    // 转发群列表 可通过 /add 添加
     var groupList : MutableList<Long> by value(mutableListOf())
 
     // 订阅列表
@@ -48,5 +48,16 @@ object PluginData : AutoSavePluginData() {
             Pair<String,String>("dynamicId","454405156217475634")
         )
     ))
+
+//    var emojiList by value(mutableListOf<String>())
+
+    /*
+        "( •̀ ω •́ )✧","φ(゜▽゜*)♪","(oﾟvﾟ)ノ","(o゜▽゜)o☆",
+        "(っ °Д °;)っ","ヽ(*。>Д<)o゜","￣へ￣","(￣▽￣)\"","(。・ω・)ノ","(´-ω-)",
+        "(੭ˊ꒳ˋ)੭✧","（っ ' ᵕ ' ｃ）","(੭ ᐕ))？","ฅ^•ω•^ฅ","(  `꒳´ )","(っ ॑꒳ ॑c)",
+        "⸜(* ॑꒳ ॑*  )⸝✩°｡⋆","(´･ω･`)?","`(*>﹏<*)′","(●'◡'●)","( •̀ ω •́ )y","(づ￣ 3￣)づ",
+        "=￣ω￣=","＞﹏＜","＞︿＜","≧ ﹏ ≦","o((>ω< ))o","ヽ(゜▽゜　)","(￣﹏￣；)","つ﹏⊂",
+        "(☆-ｖ-)"
+     */
 
 }
