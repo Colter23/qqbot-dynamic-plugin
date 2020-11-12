@@ -8,8 +8,8 @@ import net.mamoe.mirai.console.command.CommandManager.INSTANCE.unregister
 import net.mamoe.mirai.console.plugin.jvm.JvmPlugin
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
+import net.mamoe.mirai.console.util.ConsoleExperimentalApi
 import net.mamoe.mirai.event.registerEvents
-
 
 @AutoService(JvmPlugin::class)
 object PluginMain : KotlinPlugin(
@@ -22,7 +22,9 @@ object PluginMain : KotlinPlugin(
     var goodWorkCount = 0
     var tempTime : Long = 0
 
+    @ConsoleExperimentalApi
     override fun onEnable() {
+
         //加载插件配置数据
         PluginConfig.reload()
         //加载插件数据
@@ -37,11 +39,10 @@ object PluginMain : KotlinPlugin(
         PluginData.runPath = System.getProperty("user.dir")
 
         PluginMain.launch {
-            logger.info("run...")
+            logger.info("run......")
             //检测动态更新 并发送给群
-            ForwardDynamic.forward()
+            forward()
         }
-
     }
 
     override fun onDisable() {

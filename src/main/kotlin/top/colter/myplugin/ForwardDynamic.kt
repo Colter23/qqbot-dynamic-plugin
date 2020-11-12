@@ -9,170 +9,161 @@ import net.mamoe.mirai.message.data.MessageChain
 import net.mamoe.mirai.message.data.MessageChainBuilder
 import net.mamoe.mirai.message.uploadImage
 import net.mamoe.mirai.utils.info
-import java.awt.image.BufferedImage
 import top.colter.myplugin.PluginMain.logger
+import java.io.File
 
 /**
  * 检测动态更新 并发给群
  */
-object ForwardDynamic {
-    suspend fun forward (){
+suspend fun forward() {
 
-        delay(5000)
+    delay(5000)
+    //获取登陆bot
+    val bot = Bot.getInstance(PluginConfig.loginQQId)
 
-        //获取登陆bot
-        val bot = Bot.getInstance(PluginConfig.loginQQId)
+    while(true) {
+        logger.info { "->Start testing.开始检测" }
 
-        var followNum : Int = 0
-        var liveStatus : Int = 0
-        var roomInfo : JSONObject
-        var roomCover : String = ""
-        var liveStartTime : Long = 0
+        var fileMsg = ""
+        val followList = File("${PluginData.runPath}/followList.ini")
 
-        var res : JSONObject
-        var desc : JSONObject
-        var dynamicId : String = ""
-        var dynamicType : Int = 0
-        var timestamp : Long = 0
-        var card : JSONObject
-        var display : JSONObject
-        var content : String = ""
+        for (follow in followList.readLines()) {
+            if (follow[0]=='#'){
+                fileMsg += follow+"\n"
+                continue
+            }
+            val member = follow.split(' ')
+            var dynamicId = ""
+            var liveStatus = 0
+            try {
+                delay(2000)
+                var followNum : Int = 0
+                val res = httpGET(PluginData.dynamicApi + member[0]).getJSONObject("data").getJSONArray("cards").getJSONObject(0)
+                dynamicId = res.getJSONObject("desc").getBigInteger("dynamic_id").toString()
 
-        var pictures = mutableListOf<String>()
-        var emojiList = mutableMapOf<String,java.awt.Image>()
-
-        var emojiJson : JSONArray
-        var resImg : BufferedImage
-
-        while(true){
-            delay(10000)
-
-            logger.info {"->Start testing.开始检测"}
-
-            for(member in PluginData.followList){
-                try{
+                if (dynamicId != member[4]) {
+//                    logger.info { "-->${member["name"]} update dynamic" }
                     delay(2000)
+                    followNum = httpGET(PluginData.followNumApi + member[0]).getJSONObject("data").getInteger("follower").toInt()
 
-                    res = httpGET(PluginData.dynamicApi + member["uid"]).getJSONObject("data").getJSONArray("cards").getJSONObject(0)
-                    dynamicId = res.getJSONObject("desc").getBigInteger("dynamic_id").toString()
+                    val desc = res.getJSONObject("desc")
+                    val dynamicType = desc.getInteger("type")
 
-                    if (dynamicId != member["dynamicId"]){
-                        logger.info {"-->${member["name"]} update dynamic"}
-                        delay(2000)
-                        followNum = httpGET(PluginData.followNumApi + member["uid"]).getJSONObject("data").getInteger("follower").toInt()
-                        //delay(2000)
+                    val timestamp = desc.getBigInteger("timestamp").toLong()
 
-                        //var liveStatus = httpGET(liveApi + ren[0]).getJSONObject("data").getInteger("liveStatus").toInt()
+                    val card = JSON.parseObject(res.getJSONObject("card").toJSONString())
+                    val display = res.getJSONObject("display")
 
-                        desc = res.getJSONObject("desc")
-                        dynamicType = desc.getInteger("type")
+                    var content = ""
 
-                        timestamp = desc.getBigInteger("timestamp").toLong()
+                    val pictures = mutableListOf<String>()
+                    val emojiList = mutableMapOf<String,java.awt.Image>()
 
-                        card = JSON.parseObject(res.getJSONObject("card").toJSONString())
-                        display = res.getJSONObject("display")
+                    var emojiJson : JSONArray = JSONArray()
 
-                        // 判断动态类型 解析数据
-                        when (dynamicType){
-                            //带图片的动态
-                            2 -> {
-                                content = card.getJSONObject("item").getString("description")
-                                for (pic in card.getJSONObject("item").getJSONArray("pictures")){
-                                    pictures.add((pic as JSONObject).getString("img_src"))
-                                }
-                                try{
-                                    emojiJson = display.getJSONObject("emoji_info").getJSONArray("emoji_details")
-                                    getEmoji(emojiJson,emojiList)
-                                }catch (e:Exception){
-
-                                }
+                    // 判断动态类型 解析数据
+                    when (dynamicType) {
+                        //带图片的动态
+                        2 -> {
+                            content = card.getJSONObject("item").getString("description")
+                            for (pic in card.getJSONObject("item").getJSONArray("pictures")) {
+                                pictures.add((pic as JSONObject).getString("img_src"))
                             }
+                            try {
+                                emojiJson = display.getJSONObject("emoji_info").getJSONArray("emoji_details")
+                                getEmoji(emojiJson, emojiList)
+                            } catch (e: Exception) {
 
-                            //带表情的文字动态
-                            4 -> {
-                                content = card.getJSONObject("item").getString("content")
-                                try{
-                                    emojiJson = display.getJSONObject("emoji_info").getJSONArray("emoji_details")
-                                    getEmoji(emojiJson,emojiList)
-                                }catch (e:Exception){
-
-                                }
-                            }
-
-                            //视频更新动态
-                            8 -> {
-                                content = "视频: ${card.getString("title")}"
-                                pictures.add(card.getString("pic"))
                             }
                         }
 
-                        // 构建回复消息
-                        resImg = getMsg(content,timestamp,"${member["name"]}",followNum,dynamicId,emojiList,pictures)
-                        var resMsg  = MessageChainBuilder(1)
-                        resMsg.add(bot.getGroup(PluginConfig.adminGroup).uploadImage(resImg))
-                        resMsg.add("https://t.bilibili.com/$dynamicId")
-                        sendGroups(bot,resMsg.asMessageChain())
+                        //带表情的文字动态
+                        4 -> {
+                            content = card.getJSONObject("item").getString("content")
+                            try {
+                                emojiJson = display.getJSONObject("emoji_info").getJSONArray("emoji_details")
+                                getEmoji(emojiJson, emojiList)
+                            } catch (e: Exception) {
 
-
-                        //无效  接口没有此数据
-                        if (liveStatus==1 && member["live"].toBoolean()){
-                            var msg  = MessageChainBuilder(1)
-                            msg.add("${member["name"]}")
-                            msg.add(" 开播了!")
-                            sendGroups(bot,msg.asMessageChain())
+                            }
                         }
 
-                        // 更新动态ID
-                        member["dynamicId"] = dynamicId
-
+                        //视频更新动态
+                        8 -> {
+                            content = "视频: ${card.getString("title")}"
+                            pictures.add(card.getString("pic"))
+                        }
                     }
 
+                    // 构建回复消息
+                    val resImg = getMsg(content, timestamp, member[1], followNum, dynamicId, emojiList, pictures)
+                    val resMsg = MessageChainBuilder(1)
+                    resMsg.add(bot.getGroup(PluginConfig.adminGroup).uploadImage(resImg))
+                    resMsg.add("https://t.bilibili.com/$dynamicId")
+                    sendGroups(bot, resMsg.asMessageChain())
 
-                    delay(2000)
-                    roomInfo = httpGET(PluginData.liveStatusApi+member["liveRoom"] ).getJSONObject("data").getJSONObject("room_info")
-                    liveStatus = roomInfo.getInteger("live_status")
-                    if (liveStatus == 1 && !member["live"].toBoolean()){
-                        pictures.clear()
-                        emojiList.clear()
-                        if (followNum==0){
-                            delay(2000)
-                            followNum = httpGET(PluginData.followNumApi + member["uid"]).getJSONObject("data").getInteger("follower").toInt()
-                        }
+                    //更新动态ID
+//                    PluginData.followList[index]["dynamicId"] = dynamicId
 
-                        liveStartTime = roomInfo.getBigInteger("live_start_time").toLong()
-                        pictures.add(roomInfo.getString("cover"))
-
-                        // 构建回复消息
-                        content = "直播: ${roomInfo.getString("title")}"
-                        resImg = getMsg(content,liveStartTime,"${member["name"]}",followNum,"${member["liveRoom"]}",emojiList,pictures)
-                        var resMsg  = MessageChainBuilder(1)
-                        resMsg.add(bot.getGroup(PluginConfig.adminGroup).uploadImage(resImg))
-                        resMsg.add("https://live.bilibili.com/${member["liveRoom"]}")
-                        sendGroups(bot,resMsg.asMessageChain())
-
-                        member["live"] = true.toString()
-                    }
-
-
-                }catch (e:Exception){
-                    logger.error(e.message)
-                    bot.getGroup(PluginConfig.adminGroup).sendMessage("ERROR: 请求数据失败！！！")
                 }
 
+                delay(2000)
+                val roomInfo = httpGET(PluginData.liveStatusApi + member[3]).getJSONObject("data").getJSONObject("room_info")
+                liveStatus = roomInfo.getInteger("live_status")
+
+                if (liveStatus == 1 && (member[2]=="0"||member[2]=="2")) {
+
+                    val pictures = mutableListOf<String>()
+                    val emojiList = mutableMapOf<String,java.awt.Image>()
+                    if (followNum == 0) {
+                        delay(2000)
+                        followNum = httpGET(PluginData.followNumApi + member[0]).getJSONObject("data").getInteger("follower").toInt()
+                    }
+
+                    val liveStartTime = roomInfo.getBigInteger("live_start_time").toLong()
+                    var cover = roomInfo.getString("cover")
+                    var keyframe = roomInfo.getString("keyframe")
+                    if (cover!=""){
+                        pictures.add(cover)
+                    }else if(keyframe!=""){
+                        pictures.add(keyframe)
+                    }
+
+                    // 构建回复消息
+                    val content = "直播: ${roomInfo.getString("title")}"
+                    val resImg = getMsg(content, liveStartTime, member[1], followNum, member[3], emojiList, pictures)
+                    val resMsg = MessageChainBuilder(1)
+                    resMsg.add(bot.getGroup(PluginConfig.adminGroup).uploadImage(resImg))
+                    resMsg.add("https://live.bilibili.com/${member[3]}")
+                    sendGroups(bot, resMsg.asMessageChain())
+
+//                    PluginData.followList[index]["live"] = true.toString()
+                }
+//                if (liveStatus == 0 || liveStatus == 2) {
+//                    PluginData.followList[index]["live"] = false.toString()
+//                }
                 followNum = 0
-                pictures.clear()
-                emojiList.clear()
+            } catch (e: Exception) {
+                logger.error(e.message)
 
+                bot.getGroup(PluginConfig.adminGroup).sendMessage("ERROR: 请求数据失败！！！")
             }
-            delay(55000)
-        }
-    }
 
-    //群发消息
-    suspend fun sendGroups(bot:Bot,resMsg:MessageChain) {
-        for(groupId in PluginData.groupList){
-            bot.getGroup(groupId.toLong()).sendMessage(resMsg)
+            fileMsg += member[0]+" "+member[1]+" "+liveStatus+" "+member[3]+" "+dynamicId+"\n"
         }
+        followList.writeText(fileMsg)
+        delay(55000)///////////55000
     }
 }
+
+//群发消息
+suspend fun sendGroups(bot:Bot,resMsg:MessageChain) {
+    for(groupId in PluginData.groupList){
+        bot.getGroup(groupId.toLong()).sendMessage(resMsg)
+    }
+}
+
+
+
+
 

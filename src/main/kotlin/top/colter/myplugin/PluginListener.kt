@@ -43,6 +43,7 @@ object GroupListener : ListenerHost {
                 "=￣ω￣=","＞﹏＜","＞︿＜","≧ ﹏ ≦","o((>ω< ))o","ヽ(゜▽゜　)","(￣﹏￣；)","つ﹏⊂",
                 "(☆-ｖ-)")
 
+
         // @bot 回复
         if (msg.contains("[mirai:at:${bot.id}")){
             reply(emoji[(emoji.indices).random()])
@@ -58,7 +59,7 @@ object GroupListener : ListenerHost {
         }
 
         // 回复辛苦了
-        if(msg.contains("辛苦了")||msg.contains("辛苦啦")||msg.contains("苦了")){
+        if(msg.contains("辛苦了")||msg.contains("辛苦啦")||msg.contains("苦了")||msg.contains("苦啦")){
             var time = System.currentTimeMillis()
             if(PluginMain.goodWorkCount==0){
                 PluginMain.goodWorkCount++
@@ -69,6 +70,9 @@ object GroupListener : ListenerHost {
                     PluginMain.goodWorkCount = 0
                     reply("辛苦了(p≧▽≦)p")
                 }
+            }else{
+                PluginMain.tempTime = time
+                PluginMain.goodWorkCount = 1
             }
         }
     }

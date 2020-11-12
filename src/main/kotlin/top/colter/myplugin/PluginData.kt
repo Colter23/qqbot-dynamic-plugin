@@ -24,30 +24,30 @@ object PluginData : AutoSavePluginData() {
     // 转发群列表 可通过 /add 添加
     var groupList : MutableList<Long> by value(mutableListOf())
 
-    // 订阅列表
-    var followList by value(mutableListOf(
-        mutableMapOf<String,String>(
-            Pair<String,String>("uid","487550002"),
-            Pair<String,String>("name","bell"),
-            Pair<String,String>("live","false"),
-            Pair<String,String>("liveRoom","21811136"),
-            Pair<String,String>("dynamicId","454388105190912992")
-        ),
-        mutableMapOf<String,String>(
-            Pair<String,String>("uid","487551829"),
-            Pair<String,String>("name","memory"),
-            Pair<String,String>("live","false"),
-            Pair<String,String>("liveRoom","21955596"),
-            Pair<String,String>("dynamicId","454332438125895159")
-        ),
-        mutableMapOf<String,String>(
-            Pair<String,String>("uid","421347849"),
-            Pair<String,String>("name","lily"),
-            Pair<String,String>("live","false"),
-            Pair<String,String>("liveRoom","21415012"),
-            Pair<String,String>("dynamicId","454405156217475634")
-        )
-    ))
+    // 订阅列表 转到根目录下followList.ini
+//    var followList by value(mutableListOf(
+//        mutableMapOf<String,String>(
+//            Pair<String,String>("uid","487550002"),
+//            Pair<String,String>("name","bell"),
+//            Pair<String,String>("live","false"),
+//            Pair<String,String>("liveRoom","21811136"),
+//            Pair<String,String>("dynamicId","454388105190912992")
+//        ),
+//        mutableMapOf<String,String>(
+//            Pair<String,String>("uid","487551829"),
+//            Pair<String,String>("name","memory"),
+//            Pair<String,String>("live","false"),
+//            Pair<String,String>("liveRoom","21955596"),
+//            Pair<String,String>("dynamicId","454332438125895159")
+//        ),
+//        mutableMapOf<String,String>(
+//            Pair<String,String>("uid","421347849"),
+//            Pair<String,String>("name","lily"),
+//            Pair<String,String>("live","false"),
+//            Pair<String,String>("liveRoom","21415012"),
+//            Pair<String,String>("dynamicId","454405156217475634")
+//        )
+//    ))
 
 //    var emojiList by value(mutableListOf<String>())
 
