@@ -51,7 +51,7 @@ suspend fun forward() {
 
                     val timestamp = desc.getBigInteger("timestamp").toLong()
 
-                    val card = JSON.parseObject(res.getJSONObject("card").toJSONString())
+                    val card = JSON.parseObject(res.getString("card"))
                     val display = res.getJSONObject("display")
 
                     var content = ""
@@ -63,6 +63,45 @@ suspend fun forward() {
 
                     // 判断动态类型 解析数据
                     when (dynamicType) {
+                        //转发动态
+                        1 -> {
+                            content = "转发动态 : \n"+card.getJSONObject("item").getString("content")+"\n\n"
+                            val origType = card.getJSONObject("item").getInteger("orig_type")
+                            val origin = JSON.parseObject(card.getString("origin"))
+                            val originUser = card.getJSONObject("origin_user").getJSONObject("info").getString("uname")
+                            when (origType){
+                                //带图片的动态
+                                2 -> {
+                                    content += "原动态 $originUser : \n"
+                                    content += origin.getJSONObject("item").getString("description")
+                                    for (pic in origin.getJSONObject("item").getJSONArray("pictures")) {
+                                        pictures.add((pic as JSONObject).getString("img_src"))
+                                    }
+                                }
+
+                                //带表情的文字动态
+                                4 -> {
+                                    content += "原动态 $originUser : \n"
+                                    content += origin.getJSONObject("item").getString("content")
+                                }
+
+                                //视频动态
+                                8 -> {
+                                    content += "来自 $originUser 的视频 : ${origin.getString("title")}"
+                                    pictures.add(origin.getString("pic"))
+                                }
+                            }
+
+                            try {
+                                emojiJson = display.getJSONObject("emoji_info").getJSONArray("emoji_details")
+                                getEmoji(emojiJson, emojiList)
+                            } catch (e: Exception) { }
+                            try {
+                                emojiJson = display.getJSONObject("origin").getJSONObject("emoji_info").getJSONArray("emoji_details")
+                                getEmoji(emojiJson, emojiList)
+                            } catch (e: Exception) { }
+                        }
+
                         //带图片的动态
                         2 -> {
                             content = card.getJSONObject("item").getString("description")
