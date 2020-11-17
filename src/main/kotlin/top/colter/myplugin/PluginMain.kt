@@ -39,7 +39,7 @@ object PluginMain : KotlinPlugin(
         PluginData.runPath = System.getProperty("user.dir")
 
         PluginMain.launch {
-            logger.info("run......")
+            logger.info("forward......")
             //检测动态更新 并发送给群
             forward()
         }

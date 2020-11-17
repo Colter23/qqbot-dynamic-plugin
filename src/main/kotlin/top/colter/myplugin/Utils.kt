@@ -38,17 +38,74 @@ fun httpGET(url: String): JSONObject {
 }
 
 /**
+ * 生成粉丝数图片
+ */
+suspend fun getFanImg(uid:Int, name: String): BufferedImage{
+
+    val followNum = httpGET(PluginData.followNumApi + uid).getJSONObject("data").getInteger("follower").toInt()
+
+    var bg = ImageIO.read(File("$runPath/bg/$name"+"fan.png"))
+    var bi = BufferedImage(1920, 426, BufferedImage.TYPE_INT_RGB)
+    var g2 : Graphics2D = bi.graphics as Graphics2D
+    g2.drawImage(bg, 0, 0, null) //画入背景
+
+    g2.font = Font("汉仪汉黑W", Font.BOLD, 85)
+    g2.color = Color(87, 87, 87)
+    g2.drawString(followNum.toString(), 870, 270)
+
+    g2.font = Font("微软雅黑", Font.BOLD, 60)
+    g2.color = Color(148, 147, 147)
+    var timestamp :Long = System.currentTimeMillis()
+    g2.drawString(SimpleDateFormat("yyyy.MM.dd  HH:mm:ss").format(timestamp), 570, 345)
+
+    return bi
+
+}
+
+/**
+ * 生成每日总结图片
+ */
+suspend fun getSummaryImg(timestamp:Long,info: MutableList<MutableMap<String, Int>>): BufferedImage{
+
+    val time = SimpleDateFormat("MM.dd").format(timestamp)
+
+    var bg = ImageIO.read(File("$runPath/bg/summary.png"))
+    var bi = BufferedImage(1920, 1080, BufferedImage.TYPE_INT_RGB)
+    var g2 : Graphics2D = bi.graphics as Graphics2D
+    g2.drawImage(bg, 0, 0, null) //画入背景
+
+    g2.font = Font("微软雅黑", Font.BOLD, 68)
+    g2.color = Color(52, 52, 52)
+    g2.drawString(time, 726, 113)
+
+    g2.font = Font("汉仪汉黑W", Font.BOLD, 70)
+    g2.color = Color(87, 87, 87)
+
+    var y = 290
+    for (member in info){
+        g2.drawString(member["fan"].toString(), 1050, y)
+        g2.drawString(member["riseFan"].toString(), 1570, y)
+        y += 95
+        g2.drawString(member["guard"].toString(), 1050, y)
+        g2.drawString(member["riseGuard"].toString(), 1570, y)
+        y += 210
+    }
+
+    return bi
+}
+
+/**
  * 简单参数测试函数
  */
-suspend fun getMsg(msg: String): BufferedImage {
+suspend fun getMsgImg(msg: String): BufferedImage {
     var unixTimestamp : Long= System.currentTimeMillis()/1000
-    return getMsg(msg, unixTimestamp, "bell", 66666, "99999999999999999", null, null)
+    return getMsgImg(msg, unixTimestamp, "bell", 66666, "99999999999999999", null, null)
 }
 
 /**
  * 根据内容绘制图片
  */
-suspend fun getMsg(msg: String, unixTimestamp: Long, name: String, followNum: Int, dynamicId: String, emojiList: MutableMap<String, java.awt.Image>?, imgList: MutableList<String>?): BufferedImage {
+suspend fun getMsgImg(msg: String, unixTimestamp: Long, name: String, followNum: Int, dynamicId: String, emojiList: MutableMap<String, java.awt.Image>?, imgList: MutableList<String>?): BufferedImage {
 //    PluginData.dynamicCount++
 
     //统计最终图片所需的高度

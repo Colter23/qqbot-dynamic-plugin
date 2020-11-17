@@ -14,6 +14,9 @@ object PluginData : AutoSavePluginData() {
     val followNumApi by value("https://api.bilibili.com/x/relation/stat?vmid=")
     // 获取直播状态API
     val liveStatusApi by value("https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByRoom?room_id=")
+    // 大航海数 需要参数 用户id:ruid 直播间id:roomid  eg: ruid=487550002&roomid=21811136
+    val guardApi by value("https://api.live.bilibili.com/xlive/app-room/v2/guardTab/topList?page=1&page_size=1&")
+
 
     // 运行路径 在初始化时赋值
     var runPath by value("./")
