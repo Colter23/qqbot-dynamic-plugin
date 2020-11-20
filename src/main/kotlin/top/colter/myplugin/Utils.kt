@@ -76,19 +76,26 @@ suspend fun getSummaryImg(timestamp:Long,info: MutableList<MutableMap<String, In
 
     g2.font = Font("微软雅黑", Font.BOLD, 68)
     g2.color = Color(52, 52, 52)
-    g2.drawString(time, 726, 113)
+    g2.drawString(time, 690, 113)
 
     g2.font = Font("汉仪汉黑W", Font.BOLD, 70)
     g2.color = Color(87, 87, 87)
 
-    var y = 290
+    var y = 280
     for (member in info){
         g2.drawString(member["fan"].toString(), 1050, y)
         g2.drawString(member["riseFan"].toString(), 1570, y)
-        y += 95
+        y += 105
         g2.drawString(member["guard"].toString(), 1050, y)
         g2.drawString(member["riseGuard"].toString(), 1570, y)
-        y += 210
+        y += 200
+    }
+
+    //把图片写入文件
+    try{
+        ImageIO.write(bi, "JPEG", FileOutputStream("$runPath/bg/summary/${SimpleDateFormat("MMdd").format(timestamp)}.jpg"))
+    }catch (e:Exception){
+        PluginMain.logger.error("储存图片失败")
     }
 
     return bi

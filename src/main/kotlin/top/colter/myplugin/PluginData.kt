@@ -24,6 +24,8 @@ object PluginData : AutoSavePluginData() {
     // 动态计数
     var dynamicCount : Int by value(0)
 
+    var emojiNum : Int by value(98)
+
     // 转发群列表 可通过 /add 添加
     var groupList : MutableList<Long> by value(mutableListOf())
 

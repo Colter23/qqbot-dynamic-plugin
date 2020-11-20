@@ -11,6 +11,7 @@ import net.mamoe.mirai.message.uploadImage
 import net.mamoe.mirai.utils.info
 import top.colter.myplugin.PluginMain.logger
 import java.io.File
+import java.io.IOException
 import java.text.SimpleDateFormat
 
 /**
@@ -26,10 +27,14 @@ suspend fun forward() {
         logger.info { "->Start testing.开始检测" }
 
         //每日总结 每天23:58生成
+        val dateFile = File("${PluginData.runPath}/date.ini")
+        val date = dateFile.readText()
         val timestamp = System.currentTimeMillis()
         val time = SimpleDateFormat("HHmm").format(timestamp)
+        val currDate = SimpleDateFormat("MMdd").format(timestamp)
         val info : MutableList<MutableMap<String, Int>> = mutableListOf()
-        var summaryTime = "2358"
+        val summaryTime1 = "2357"
+        val summaryTime2 = "2358"
 
         var fileMsg = ""
         var followNum : Int = 0
@@ -37,25 +42,23 @@ suspend fun forward() {
         val followList = File("${PluginData.runPath}/followList.ini")
 
         for (follow in followList.readLines()) {
-            if (follow[0]=='#'){
-                fileMsg += follow+"\n"
-                continue
-            }
-            val member = follow.split(' ')
-            var dynamicId = ""
-            var liveStatus = 0
             try {
-                delay(2000)
-
-
+                if (follow[0]=='#'){
+                    fileMsg += follow+"\n"
+                    continue
+                }
+                val member = follow.split(' ')
+                var dynamicId = ""
+                var liveStatus = 0
                 val infoMap = mutableMapOf<String,Int>()
 
+                delay(5000)
                 val res = httpGET(PluginData.dynamicApi + member[0]).getJSONObject("data").getJSONArray("cards").getJSONObject(0)
                 dynamicId = res.getJSONObject("desc").getBigInteger("dynamic_id").toString()
 
                 if (dynamicId != member[4]) {
 //                    logger.info { "-->${member["name"]} update dynamic" }
-                    delay(2000)
+                    delay(5000)
                     followNum = httpGET(PluginData.followNumApi + member[0]).getJSONObject("data").getInteger("follower")
 
                     val desc = res.getJSONObject("desc")
@@ -158,7 +161,7 @@ suspend fun forward() {
 
                 }
 
-                delay(2000)
+                delay(5000)
                 val roomInfo = httpGET(PluginData.liveStatusApi + member[3]).getJSONObject("data").getJSONObject("room_info")
                 liveStatus = roomInfo.getInteger("live_status")
 
@@ -167,7 +170,7 @@ suspend fun forward() {
                     val pictures = mutableListOf<String>()
                     val emojiList = mutableMapOf<String,java.awt.Image>()
                     if (followNum == 0) {
-                        delay(2000)
+                        delay(5000)
                         followNum = httpGET(PluginData.followNumApi + member[0]).getJSONObject("data").getInteger("follower")
                     }
 
@@ -195,46 +198,46 @@ suspend fun forward() {
 //                }
 
 
-                if (followNum==0 && time==summaryTime){
-                    delay(2000)
+                if (followNum==0 && (time==summaryTime1||time==summaryTime2) && currDate != date){
+                    delay(5000)
                     followNum = httpGET(PluginData.followNumApi + member[0]).getJSONObject("data").getInteger("follower")
                 }
 
-                if (time==summaryTime){
+                if ((time==summaryTime1||time==summaryTime2) && currDate != date){
                     infoMap["fan"] = followNum
                     infoMap["riseFan"] = followNum - member[5].toInt()
-                    delay(2000)
+                    delay(5000)
                     guardNum = httpGET(PluginData.guardApi +"ruid="+member[0]+"&roomid="+member[3]).getJSONObject("data").getJSONObject("info").getInteger("num")
                     infoMap["guard"] = guardNum
                     infoMap["riseGuard"] = guardNum - member[6].toInt()
                     info.add(infoMap)
                 }
 
+                fileMsg += if ((time==summaryTime1||time==summaryTime2) && currDate != date)
+                    member[0]+" "+member[1]+" "+liveStatus+" "+member[3]+" "+dynamicId+" "+followNum+" "+guardNum+"\n"
+                else
+                    member[0]+" "+member[1]+" "+liveStatus+" "+member[3]+" "+dynamicId+" "+member[5]+" "+member[6]+"\n"
+
+                followNum = 0
+                guardNum = 0
+
             } catch (e: Exception) {
-                logger.error(e.message)
-
-                bot.getGroup(PluginConfig.adminGroup).sendMessage("ERROR: 请求处理数据失败！！！")
+                bot.getGroup(PluginConfig.adminGroup).sendMessage("ERROR: 请求处理数据失败！！！\n"+e.message)
+                throw IOException("请求处理数据失败")
             }
-
-            fileMsg += if (time==summaryTime)
-                member[0]+" "+member[1]+" "+liveStatus+" "+member[3]+" "+dynamicId+" "+followNum+" "+guardNum+"\n"
-            else
-                member[0]+" "+member[1]+" "+liveStatus+" "+member[3]+" "+dynamicId+" "+member[5]+" "+member[6]+"\n"
-
-            followNum = 0
-            guardNum = 0
         }
 
-        if (time==summaryTime){
+        if ((time==summaryTime1||time==summaryTime2) && currDate != date){
             val resImg = getSummaryImg(timestamp,info)
             val resMsg = MessageChainBuilder(1)
             resMsg.add(bot.getGroup(PluginConfig.adminGroup).uploadImage(resImg))
             sendGroups(bot, resMsg.asMessageChain())
+            dateFile.writeText(currDate)
         }
 
 
         followList.writeText(fileMsg)
-        delay(50000)///////////55000
+        delay(40000)///////////55000
     }
 }
 
@@ -242,6 +245,7 @@ suspend fun forward() {
 suspend fun sendGroups(bot:Bot,resMsg:MessageChain) {
     for(groupId in PluginData.groupList){
         bot.getGroup(groupId.toLong()).sendMessage(resMsg)
+        delay(500)
     }
 }
 
