@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONArray
 import com.alibaba.fastjson.JSONObject
 import top.colter.myplugin.PluginData.runPath
+import top.colter.myplugin.translate.TransApi
 import java.awt.Color
 import java.awt.Font
 import java.awt.Graphics2D
+import java.awt.RenderingHints
 import java.awt.image.BufferedImage
 import java.io.File
 import java.io.FileOutputStream
@@ -48,6 +50,7 @@ suspend fun getFanImg(uid:Int, name: String): BufferedImage{
     var bi = BufferedImage(1920, 426, BufferedImage.TYPE_INT_RGB)
     var g2 : Graphics2D = bi.graphics as Graphics2D
     g2.drawImage(bg, 0, 0, null) //画入背景
+    g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_GASP)
 
     g2.font = Font("汉仪汉黑W", Font.BOLD, 85)
     g2.color = Color(87, 87, 87)
@@ -73,6 +76,9 @@ suspend fun getSummaryImg(timestamp:Long,info: MutableList<MutableMap<String, In
     var bi = BufferedImage(1920, 1080, BufferedImage.TYPE_INT_RGB)
     var g2 : Graphics2D = bi.graphics as Graphics2D
     g2.drawImage(bg, 0, 0, null) //画入背景
+    g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_GASP)
+//    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
 
     g2.font = Font("微软雅黑", Font.BOLD, 68)
     g2.color = Color(52, 52, 52)
@@ -112,8 +118,20 @@ suspend fun getMsgImg(msg: String): BufferedImage {
 /**
  * 根据内容绘制图片
  */
-suspend fun getMsgImg(msg: String, unixTimestamp: Long, name: String, followNum: Int, dynamicId: String, emojiList: MutableMap<String, java.awt.Image>?, imgList: MutableList<String>?): BufferedImage {
+suspend fun getMsgImg(souMsg: String, unixTimestamp: Long, name: String, followNum: Int, dynamicId: String, emojiList: MutableMap<String, java.awt.Image>?, imgList: MutableList<String>?): BufferedImage {
 //    PluginData.dynamicCount++
+
+    //文本翻译
+    var msg = souMsg
+    val api = TransApi(PluginData.APP_ID, PluginData.SECURITY_KEY)
+    val resMsg = JSON.parseObject(api.getTransResult(msg, "auto", "zh"))
+    if (resMsg.getString("from")!="zh") {
+        msg += "\n\n翻译: \n"
+        for (item in resMsg.getJSONArray("trans_result")){
+            msg+=(item as JSONObject).getString("dst")
+            msg+="\n"
+        }
+    }
 
     //统计最终图片所需的高度
     var height = 0
@@ -124,6 +142,7 @@ suspend fun getMsgImg(msg: String, unixTimestamp: Long, name: String, followNum:
     var bi = BufferedImage(1920, 1080, BufferedImage.TYPE_INT_RGB)
     var g2 : Graphics2D = bi.graphics as Graphics2D
     g2.drawImage(bg, 0, 0, null) //画入背景
+    g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_GASP)
 
     //最终图片片段列表
     var biList = mutableListOf<BufferedImage>()
@@ -133,6 +152,7 @@ suspend fun getMsgImg(msg: String, unixTimestamp: Long, name: String, followNum:
     height += 370
     biList.add(topBi)
     var topG2 : Graphics2D = topBi.graphics as Graphics2D
+    topG2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_GASP)
     topG2.font = Font("汉仪汉黑W", Font.PLAIN, 80)
     topG2.color = Color(87, 87, 87)
     topG2.drawString(followNum.toString(), 770, 265)
@@ -154,6 +174,7 @@ suspend fun getMsgImg(msg: String, unixTimestamp: Long, name: String, followNum:
 
     val textBi =  BufferedImage(1920, 70, BufferedImage.TYPE_INT_RGB)
     val textG2 : Graphics2D = textBi.graphics as Graphics2D
+    textG2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_GASP)
     textG2.font = Font("微软雅黑", Font.PLAIN, 60)
 
     var l = 0
@@ -250,6 +271,7 @@ suspend fun getMsgImg(msg: String, unixTimestamp: Long, name: String, followNum:
         val centerBi =  BufferedImage(1920, 70, BufferedImage.TYPE_INT_RGB)
         val centerG2 : Graphics2D = centerBi.graphics as Graphics2D
         centerG2.drawImage(bi.getSubimage(0, 470, 1920, 70), 0, 0, null)
+        centerG2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_GASP)
 
         centerG2.font = Font("微软雅黑", Font.PLAIN, 60)
         centerG2.color = Color(87, 87, 87)
@@ -318,6 +340,7 @@ suspend fun getMsgImg(msg: String, unixTimestamp: Long, name: String, followNum:
     //构建底部图片片段 写入动态ID
     var bottomBi = bi.getSubimage(0, 995, 1920, 85)
     var bottomG2 : Graphics2D = bottomBi.graphics as Graphics2D
+    bottomG2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_GASP)
     height += 85
     biList.add(bottomBi)
     bottomG2.font = Font("微软雅黑", Font.BOLD, 45)

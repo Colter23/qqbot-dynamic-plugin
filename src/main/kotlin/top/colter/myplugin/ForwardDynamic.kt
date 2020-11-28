@@ -40,6 +40,7 @@ suspend fun forward() {
         var followNum : Int = 0
         var guardNum : Int = 0
         val followList = File("${PluginData.runPath}/followList.ini")
+        val delay = (8000..13000).random().toLong()
 
         for (follow in followList.readLines()) {
             try {
@@ -52,13 +53,13 @@ suspend fun forward() {
                 var liveStatus = 0
                 val infoMap = mutableMapOf<String,Int>()
 
-                delay(5000)
+                delay(delay)
                 val res = httpGET(PluginData.dynamicApi + member[0]).getJSONObject("data").getJSONArray("cards").getJSONObject(0)
                 dynamicId = res.getJSONObject("desc").getBigInteger("dynamic_id").toString()
 
                 if (dynamicId != member[4]) {
 //                    logger.info { "-->${member["name"]} update dynamic" }
-                    delay(5000)
+                    delay(delay)
                     followNum = httpGET(PluginData.followNumApi + member[0]).getJSONObject("data").getInteger("follower")
 
                     val desc = res.getJSONObject("desc")
@@ -85,6 +86,11 @@ suspend fun forward() {
                             val origin = JSON.parseObject(card.getString("origin"))
                             val originUser = card.getJSONObject("origin_user").getJSONObject("info").getString("uname")
                             when (origType){
+                                //直播动态
+                                1 -> {
+                                    
+                                }
+
                                 //带图片的动态
                                 2 -> {
                                     content += "原动态 $originUser : \n"
@@ -161,7 +167,7 @@ suspend fun forward() {
 
                 }
 
-                delay(5000)
+                delay(delay)
                 val roomInfo = httpGET(PluginData.liveStatusApi + member[3]).getJSONObject("data").getJSONObject("room_info")
                 liveStatus = roomInfo.getInteger("live_status")
 
@@ -170,7 +176,7 @@ suspend fun forward() {
                     val pictures = mutableListOf<String>()
                     val emojiList = mutableMapOf<String,java.awt.Image>()
                     if (followNum == 0) {
-                        delay(5000)
+                        delay(delay)
                         followNum = httpGET(PluginData.followNumApi + member[0]).getJSONObject("data").getInteger("follower")
                     }
 
@@ -199,14 +205,14 @@ suspend fun forward() {
 
 
                 if (followNum==0 && (time==summaryTime1||time==summaryTime2) && currDate != date){
-                    delay(5000)
+                    delay(delay)
                     followNum = httpGET(PluginData.followNumApi + member[0]).getJSONObject("data").getInteger("follower")
                 }
 
                 if ((time==summaryTime1||time==summaryTime2) && currDate != date){
                     infoMap["fan"] = followNum
                     infoMap["riseFan"] = followNum - member[5].toInt()
-                    delay(5000)
+                    delay(delay)
                     guardNum = httpGET(PluginData.guardApi +"ruid="+member[0]+"&roomid="+member[3]).getJSONObject("data").getJSONObject("info").getInteger("num")
                     infoMap["guard"] = guardNum
                     infoMap["riseGuard"] = guardNum - member[6].toInt()
@@ -222,8 +228,9 @@ suspend fun forward() {
                 guardNum = 0
 
             } catch (e: Exception) {
-                bot.getGroup(PluginConfig.adminGroup).sendMessage("ERROR: 请求处理数据失败！！！\n"+e.message)
-                throw IOException("请求处理数据失败")
+                bot.getGroup(PluginConfig.adminGroup).sendMessage("ERROR: 请求处理数据失败！！！五分钟后重试\n"+e.message)
+//                throw IOException("请求处理数据失败")
+                delay(300000)
             }
         }
 
@@ -237,7 +244,7 @@ suspend fun forward() {
 
 
         followList.writeText(fileMsg)
-        delay(40000)///////////55000
+        delay(15000)///////////55000
     }
 }
 

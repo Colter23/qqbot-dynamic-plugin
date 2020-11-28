@@ -17,6 +17,10 @@ object PluginData : AutoSavePluginData() {
     // 大航海数 需要参数 用户id:ruid 直播间id:roomid  eg: ruid=487550002&roomid=21811136
     val guardApi by value("https://api.live.bilibili.com/xlive/app-room/v2/guardTab/topList?page=1&page_size=1&")
 
+    //百度翻译api密钥
+    val APP_ID by value("")
+    val SECURITY_KEY by value("")
+
 
     // 运行路径 在初始化时赋值
     var runPath by value("./")

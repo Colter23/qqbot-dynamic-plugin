@@ -6,8 +6,8 @@ import net.mamoe.mirai.contact.Member
 import net.mamoe.mirai.event.EventHandler
 import net.mamoe.mirai.event.ListenerHost
 import net.mamoe.mirai.message.MessageEvent
-import net.mamoe.mirai.message.data.At
-import net.mamoe.mirai.message.data.MessageChainBuilder
+import net.mamoe.mirai.message.data.*
+import net.mamoe.mirai.message.data.PokeMessage.Types.Poke
 import net.mamoe.mirai.message.uploadImage
 import java.io.File
 import javax.imageio.ImageIO
@@ -93,6 +93,13 @@ object GroupListener : ListenerHost {
                     reply(emoji.upload())
                 }
         }
+//        if (msg=="#voice"){
+//            val vv = File("${PluginData.runPath}/test.mp3")
+//            val vvv = vv.inputStream()
+//            reply(bot.getGroup(1030460255).uploadVoice(vvv))
+//            vvv.close()
+//        }
+
 
         // 私聊bot转发到群
 //        if (subject !is Group){
