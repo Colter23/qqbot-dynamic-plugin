@@ -42,6 +42,8 @@ suspend fun forward() {
         val followList = File("${PluginData.runPath}/followList.ini")
         val delay = (8000..13000).random().toLong()
 
+        var exception = false
+
         for (follow in followList.readLines()) {
             try {
                 if (follow[0]=='#'){
@@ -231,20 +233,23 @@ suspend fun forward() {
                 bot.getGroup(PluginConfig.adminGroup).sendMessage("ERROR: 请求处理数据失败！！！五分钟后重试\n"+e.message)
 //                throw IOException("请求处理数据失败")
                 delay(300000)
+                exception = true
             }
         }
 
-        if ((time==summaryTime1||time==summaryTime2) && currDate != date){
-            val resImg = getSummaryImg(timestamp,info)
-            val resMsg = MessageChainBuilder(1)
-            resMsg.add(bot.getGroup(PluginConfig.adminGroup).uploadImage(resImg))
-            sendGroups(bot, resMsg.asMessageChain())
-            dateFile.writeText(currDate)
+        if (!exception){
+            if ((time==summaryTime1||time==summaryTime2) && currDate != date){
+                val resImg = getSummaryImg(timestamp,info)
+                val resMsg = MessageChainBuilder(1)
+                resMsg.add(bot.getGroup(PluginConfig.adminGroup).uploadImage(resImg))
+                sendGroups(bot, resMsg.asMessageChain())
+                dateFile.writeText(currDate)
+            }
+
+            followList.writeText(fileMsg)
+            delay(15000)///////////55000
         }
 
-
-        followList.writeText(fileMsg)
-        delay(15000)///////////55000
     }
 }
 
