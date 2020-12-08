@@ -44,8 +44,8 @@ suspend fun forward() {
 
         var exception = false
 
-        for (follow in followList.readLines()) {
-            try {
+        try {
+            for (follow in followList.readLines()) {
                 if (follow[0]=='#'){
                     fileMsg += follow+"\n"
                     continue
@@ -228,13 +228,12 @@ suspend fun forward() {
 
                 followNum = 0
                 guardNum = 0
-
-            } catch (e: Exception) {
-                bot.getGroup(PluginConfig.adminGroup).sendMessage("ERROR: 请求处理数据失败！！！五分钟后重试\n"+e.message)
-//                throw IOException("请求处理数据失败")
-                delay(300000)
-                exception = true
             }
+        } catch (e: Exception) {
+            bot.getGroup(PluginConfig.adminGroup).sendMessage("ERROR: 请求处理数据失败！！！五分钟后重试\n"+e.message)
+//                throw IOException("请求处理数据失败")
+            delay(300000)
+            exception = true
         }
 
         if (!exception){
