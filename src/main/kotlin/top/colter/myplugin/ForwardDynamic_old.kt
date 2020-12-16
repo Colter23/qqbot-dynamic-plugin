@@ -5,46 +5,65 @@ import com.alibaba.fastjson.JSONArray
 import com.alibaba.fastjson.JSONObject
 import kotlinx.coroutines.delay
 import net.mamoe.mirai.Bot
+import net.mamoe.mirai.message.data.MessageChain
 import net.mamoe.mirai.message.data.MessageChainBuilder
 import net.mamoe.mirai.message.uploadImage
 import net.mamoe.mirai.utils.info
-import net.mamoe.mirai.utils.toExternalImage
 import top.colter.myplugin.PluginMain.logger
-import java.awt.image.BufferedImage
+import java.io.File
+import java.io.IOException
 import java.text.SimpleDateFormat
 
 /**
  * 检测动态更新 并发给群
  */
-suspend fun forward() {
+suspend fun forward_old() {
 
+    delay(10000)
     //获取登陆bot
+//    val bot = Bot.getInstance(PluginConfig.loginQQId)
     val bot = PluginMain.bot
 
     while(true) {
-        logger.info { "->Start testing...开始检测..." }
+        logger.info { "->Start testing.开始检测" }
 
         //每日总结 每天23:58生成
+        val dateFile = File("${PluginConfig.runPath}/date.ini")
+        val date = dateFile.readText()
         val timestamp = System.currentTimeMillis()
         val time = SimpleDateFormat("HHmm").format(timestamp)
         val currDate = SimpleDateFormat("MMdd").format(timestamp)
         val info : MutableList<MutableMap<String, Int>> = mutableListOf()
+        val summaryTime1 = "2357"
+        val summaryTime2 = "2358"
 
-        val summary = (time=="2357"||time=="2358")&&currDate!=PluginConfig.summaryDate
+        var fileMsg = ""
+        var followNum : Int = 0
+        var guardNum : Int = 0
+        val followList = File("${PluginConfig.runPath}/followList.ini")
+        val delay = (8000..13000).random().toLong()
 
-        val delay = (8000L..13000L)
-
-        var index = 0
+        var exception = false
 
         try {
-            for (member in PluginMain.subData){
+            for (follow in followList.readLines()) {
+                if (follow[0]=='#'){
+                    fileMsg += follow+"\n"
+                    continue
+                }
+                val member = follow.split(' ')
+                var dynamicId = ""
+                var liveStatus = 0
+                val infoMap = mutableMapOf<String,Int>()
 
-                // 获取动态
-                delay(delay.random())
-                val res = httpGetWithCookie(PluginConfig.dynamicApi + member["uid"]).getJSONObject("data").getJSONArray("cards").getJSONObject(0)
-                val dynamicId = res.getJSONObject("desc").getBigInteger("dynamic_id").toString()
-                // 检测动态是否更新
-                if (dynamicId != member["dynamicId"]) {
+                delay(delay)
+                val res = httpGET(PluginConfig.dynamicApi + member[0]).getJSONObject("data").getJSONArray("cards").getJSONObject(0)
+                dynamicId = res.getJSONObject("desc").getBigInteger("dynamic_id").toString()
+
+                if (dynamicId != member[4]) {
+//                    logger.info { "-->${member["name"]} update dynamic" }
+                    delay(delay)
+                    followNum = httpGET(PluginConfig.followNumApi + member[0]).getJSONObject("data").getInteger("follower")
 
                     val desc = res.getJSONObject("desc")
                     val dynamicType = desc.getInteger("type")
@@ -72,7 +91,9 @@ suspend fun forward() {
                             when (origType){
                                 //直播动态
                                 1 -> {
+                                    
                                 }
+
                                 //带图片的动态
                                 2 -> {
                                     content += "原动态 $originUser : \n"
@@ -81,17 +102,20 @@ suspend fun forward() {
                                         pictures.add((pic as JSONObject).getString("img_src"))
                                     }
                                 }
+
                                 //带表情的文字动态
                                 4 -> {
                                     content += "原动态 $originUser : \n"
                                     content += origin.getJSONObject("item").getString("content")
                                 }
+
                                 //视频动态
                                 8 -> {
                                     content += "来自 $originUser 的视频 : ${origin.getString("title")}"
                                     pictures.add(origin.getString("pic"))
                                 }
                             }
+
                             try {
                                 emojiJson = display.getJSONObject("emoji_info").getJSONArray("emoji_details")
                                 getEmoji(emojiJson, emojiList)
@@ -101,6 +125,7 @@ suspend fun forward() {
                                 getEmoji(emojiJson, emojiList)
                             } catch (e: Exception) { }
                         }
+
                         //带图片的动态
                         2 -> {
                             content = card.getJSONObject("item").getString("description")
@@ -114,6 +139,7 @@ suspend fun forward() {
 
                             }
                         }
+
                         //带表情的文字动态
                         4 -> {
                             content = card.getJSONObject("item").getString("content")
@@ -124,6 +150,7 @@ suspend fun forward() {
 
                             }
                         }
+
                         //视频更新动态
                         8 -> {
                             content = "视频: ${card.getString("title")}"
@@ -132,32 +159,33 @@ suspend fun forward() {
                     }
 
                     // 构建回复消息
-                    val resImg = getMsgImg(content, timestamp, "${member["uid"]}", dynamicId, emojiList, pictures)
-                    sendGroups(bot,"${member["uid"]}", resImg, "https://t.bilibili.com/$dynamicId")
+//                    val resImg = getMsgImg(content, timestamp, member[1], followNum, dynamicId, emojiList, pictures)
+//                    val resMsg = MessageChainBuilder(1)
+//                    resMsg.add(bot.getGroup(PluginConfig.adminGroup).uploadImage(resImg))
+//                    resMsg.add("https://t.bilibili.com/$dynamicId")
+//                    sendGroups(bot, resMsg.asMessageChain())
 
                     //更新动态ID
-                    PluginMain.subData[index]["dynamicId"] = dynamicId
+//                    PluginConfig.followList[index]["dynamicId"] = dynamicId
 
                 }
 
-                val liveStatus =
-                    try {
-                        res.getJSONObject("display").getJSONObject("live_info").getInteger("live_status")
-                    }catch (e:Exception){
-                        0
-                    }
+                delay(delay)
+                val roomInfo = httpGET(PluginConfig.liveStatusApi + member[3]).getJSONObject("data").getJSONObject("room_info")
+                liveStatus = roomInfo.getInteger("live_status")
 
-                if (liveStatus == 1 && (member["liveStatus"]=="0"||member["liveStatus"]=="2")) {
+                if (liveStatus == 1 && (member[2]=="0"||member[2]=="2")) {
 
                     val pictures = mutableListOf<String>()
                     val emojiList = mutableMapOf<String,java.awt.Image>()
-
-                    delay(delay.random())
-                    val roomInfo = httpGET(PluginConfig.liveStatusApi + member["liveRoom"]).getJSONObject("data").getJSONObject("room_info")
+                    if (followNum == 0) {
+                        delay(delay)
+                        followNum = httpGET(PluginConfig.followNumApi + member[0]).getJSONObject("data").getInteger("follower")
+                    }
 
                     val liveStartTime = roomInfo.getBigInteger("live_start_time").toLong()
-                    val cover = roomInfo.getString("cover")
-                    val keyframe = roomInfo.getString("keyframe")
+                    var cover = roomInfo.getString("cover")
+                    var keyframe = roomInfo.getString("keyframe")
                     if (cover!=""){
                         pictures.add(cover)
                     }else if(keyframe!=""){
@@ -165,69 +193,71 @@ suspend fun forward() {
                     }
 
                     // 构建回复消息
-                    val resImg = getMsgImg("直播: ${roomInfo.getString("title")}", liveStartTime, "${member["uid"]}", "${member["liveRoom"]}", emojiList, pictures)
-                    sendGroups(bot,"${member["uid"]}", resImg, "https://live.bilibili.com/${member["liveRoom"]}")
+                    val content = "直播: ${roomInfo.getString("title")}"
+//                    val resImg = getMsgImg(content, liveStartTime, member[1], followNum, member[3], emojiList, pictures)
+//                    val resMsg = MessageChainBuilder(1)
+//                    resMsg.add(bot.getGroup(PluginConfig.adminGroup).uploadImage(resImg))
+//                    resMsg.add("https://live.bilibili.com/${member[3]}")
+//                    sendGroups(bot, resMsg.asMessageChain())
 
+//                    PluginConfig.followList[index]["live"] = true.toString()
                 }
-                PluginMain.subData[index]["liveStatus"] = liveStatus.toString()
+//                if (liveStatus == 0 || liveStatus == 2) {
+//                    PluginConfig.followList[index]["live"] = false.toString()
+//                }
 
-                if (summary && PluginConfig.summaryList.contains(member["uid"])){
 
-                    val infoMap = mutableMapOf<String,Int>()
-                    delay(delay.random())
-                    val followNum = httpGET(PluginConfig.followNumApi + member["uid"]).getJSONObject("data").getInteger("follower")
+                if (followNum==0 && (time==summaryTime1||time==summaryTime2) && currDate != date){
+                    delay(delay)
+                    followNum = httpGET(PluginConfig.followNumApi + member[0]).getJSONObject("data").getInteger("follower")
+                }
+
+                if ((time==summaryTime1||time==summaryTime2) && currDate != date){
                     infoMap["fan"] = followNum
-                    infoMap["riseFan"] = followNum - "${member["fan"]}".toInt()
-                    delay(delay.random())
-                    val guardNum = httpGET(PluginConfig.guardApi +"ruid="+member["uid"]+"&roomid="+member["liveRoom"]).getJSONObject("data").getJSONObject("info").getInteger("num")
+                    infoMap["riseFan"] = followNum - member[5].toInt()
+                    delay(delay)
+                    guardNum = httpGET(PluginConfig.guardApi +"ruid="+member[0]+"&roomid="+member[3]).getJSONObject("data").getJSONObject("info").getInteger("num")
                     infoMap["guard"] = guardNum
-                    infoMap["riseGuard"] = guardNum - "${member["guard"]}".toInt()
+                    infoMap["riseGuard"] = guardNum - member[6].toInt()
                     info.add(infoMap)
-
-                    PluginMain.subData[index]["fan"] = followNum.toString()
-                    PluginMain.subData[index]["guard"] = guardNum.toString()
                 }
-                index++
+
+                fileMsg += if ((time==summaryTime1||time==summaryTime2) && currDate != date)
+                    member[0]+" "+member[1]+" "+liveStatus+" "+member[3]+" "+dynamicId+" "+followNum+" "+guardNum+"\n"
+                else
+                    member[0]+" "+member[1]+" "+liveStatus+" "+member[3]+" "+dynamicId+" "+member[5]+" "+member[6]+"\n"
+
+                followNum = 0
+                guardNum = 0
             }
         } catch (e: Exception) {
             bot.getGroup(PluginConfig.adminGroup).sendMessage("ERROR: 请求处理数据失败！！！五分钟后重试\n"+e.message)
+//                throw IOException("请求处理数据失败")
             delay(300000)
+            exception = true
         }
 
-        if (summary){
-            val resImg = getSummaryImg(timestamp,info)
-            sendGroups(bot, "0",resImg,"")
-            PluginConfig.summaryDate = currDate
+        if (!exception){
+            if ((time==summaryTime1||time==summaryTime2) && currDate != date){
+//                val resImg = getSummaryImg(timestamp,info)
+//                val resMsg = MessageChainBuilder(1)
+//                resMsg.add(bot.getGroup(PluginConfig.adminGroup).uploadImage(resImg))
+//                sendGroups(bot, resMsg.asMessageChain())
+//                dateFile.writeText(currDate)
+            }
+
+            followList.writeText(fileMsg)
+            delay(15000)///////////55000
         }
-        delay(10000)
+
     }
 }
 
 //群发消息
-suspend fun sendGroups(bot:Bot, uid:String, resImg: BufferedImage, resStr: String) {
-    if (uid=="0"){
-        PluginMain.groupList.forEach { id ->
-            val resMsg = MessageChainBuilder(1)
-            resMsg.add(bot.getGroup(id).uploadImage(resImg.toExternalImage()))
-            resMsg.add(resStr)
-            bot.getGroup(id).sendMessage(resMsg.asMessageChain())
-            delay(500)
-        }
-    }else{
-        PluginMain.followMemberGroup[uid]?.forEach { id ->
-            if (PluginMain.groupList.contains(id)){
-                val resMsg = MessageChainBuilder(1)
-                resMsg.add(bot.getGroup(id).uploadImage(resImg.toExternalImage()))
-                resMsg.add(resStr)
-                bot.getGroup(id).sendMessage(resMsg.asMessageChain())
-            }else if (PluginMain.friendList.contains(id)){
-                val resMsg = MessageChainBuilder(1)
-                resMsg.add(bot.getFriend(id).uploadImage(resImg.toExternalImage()))
-                resMsg.add(resStr)
-                bot.getFriend(id).sendMessage(resMsg.asMessageChain())
-            }
-            delay(500)
-        }
+suspend fun sendGroups_old(bot:Bot,resMsg:MessageChain) {
+    for(groupId in PluginConfig.groupList){
+        bot.getGroup(groupId.toLong()).sendMessage(resMsg)
+        delay(500)
     }
 }
 

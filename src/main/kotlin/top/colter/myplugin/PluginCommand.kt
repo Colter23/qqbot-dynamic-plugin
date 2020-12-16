@@ -14,7 +14,7 @@ object AddCommand : SimpleCommand(
     @Handler
     suspend fun CommandSender.handle(group: Long) {
         try{
-            PluginData.groupList.add(group)
+            PluginConfig.groupList.add(group)
             sendMessage("添加成功( •̀ ω •́ )✧")
         }catch (e:Exception){
             sendMessage("添加失败`(*>﹏<*)′")
@@ -30,7 +30,7 @@ object DeleteCommand : SimpleCommand(
     @Handler
     suspend fun CommandSender.handle(group: Long) {
         try{
-            PluginData.groupList.remove(group)
+            PluginConfig.groupList.remove(group)
             sendMessage("删除成功`(*>﹏<*)′")
         }catch (e:Exception){
             sendMessage("添加失败(っ °Д °;)っ")
